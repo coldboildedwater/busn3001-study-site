@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BUSN3001 Final Discussion Practice</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">B3</span>
+        <div>
+          <p class="course">BUSN3001 Final Exam</p>
+          <h1>Discussion Question Practice</h1>
+        </div>
+      </div>
+      <nav aria-label="Page sections">
+        <a href="#prediction">Prediction</a>
+        <a href="#topics">Knowledge</a>
+        <a href="#practice">Questions</a>
+        <a href="#exam-mode">Exam Mode</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div class="intro-copy">
+          <p class="label">Built from your lecture slides, tutorial notes, and exam practice notes</p>
+          <h2>先按复习优先级整理，再练像 tutorial 一样的论述题。</h2>
+          <p>
+            Section B 有三道 discussion questions。这里的练习按老师 tutorial 的口径整理：
+            define the theory, identify incentives and costs, apply to the scenario, then critically evaluate.
+          </p>
+        </div>
+        <div class="exam-card" aria-label="Exam structure">
+          <div>
+            <span class="metric">3</span>
+            <span>Discussion questions</span>
+          </div>
+          <div>
+            <span class="metric">80%</span>
+            <span>Section B weighting</span>
+          </div>
+          <div>
+            <span class="metric">70</span>
+            <span>Practice questions</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice" aria-label="Practice disclaimer">
+        <strong>Important:</strong>
+        <span>
+          These practice questions are for extra practice only. They are not indicative of the final exam's
+          coverage, standard, or difficulty. The exam structure is discussed in the Week 10 and Week 12 lectures.
+        </span>
+      </section>
+
+      <section id="prediction" class="section">
+        <div class="section-heading">
+          <p class="label">Revision priority, not exam prediction</p>
+          <h2>更适合优先复习的知识点分布</h2>
+          <p>这不是押题，只是根据 tutorial 题型、exam practice notes 和 Week 12 复习页整理出的复习优先级。</p>
+        </div>
+        <div id="predictionGrid" class="prediction-grid"></div>
+      </section>
+
+      <section id="topics" class="section">
+        <div class="section-heading">
+          <p class="label">Knowledge bank</p>
+          <h2>每个分布下面到底要会什么</h2>
+          <p>先看中文讲解，再背英文关键词。考试时不要整段硬倒，要按题目要求挑着写。</p>
+        </div>
+        <div class="toolbar">
+          <button class="tab-button active" data-topic-filter="all">All topics</button>
+        </div>
+        <div id="topicList" class="topic-list"></div>
+      </section>
+
+      <section id="practice" class="section">
+        <div class="section-heading">
+          <p class="label">Tutorial-style questions</p>
+          <h2>Tutorial 原题 + 额外练习题</h2>
+          <p>每题格式：英文题目、中文题目、中文答题思路、中文回答、英文回答、需要背的英文单词。</p>
+        </div>
+        <div class="practice-controls">
+          <label>
+            Filter by topic
+            <select id="questionFilter" aria-label="Filter questions by topic">
+              <option value="all">All topics</option>
+            </select>
+          </label>
+          <label>
+            Search
+            <input id="searchInput" type="search" placeholder="agency, EMH, CSR..." />
+          </label>
+          <button id="collapseAll" type="button">Collapse answers</button>
+        </div>
+        <div id="questionList" class="question-list"></div>
+      </section>
+
+      <section id="exam-mode" class="section exam-mode">
+        <div class="section-heading">
+          <p class="label">Exam mode</p>
+          <h2>随机抽三道，模拟 Section B</h2>
+          <p>建议先用 10 分钟列 bullet points，再打开答案对照有没有漏 theory、application 和 critical evaluation。</p>
+        </div>
+        <div class="exam-actions">
+          <button id="drawExam" type="button">Draw 3 questions</button>
+          <button id="clearExam" type="button">Clear</button>
+        </div>
+        <div id="examQuestions" class="exam-questions" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Study strategy: memorise vocabulary, not fixed paragraphs. In the exam, answer the exact question asked.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

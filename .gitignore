@@ -1,0 +1,7 @@
+*.pdf
+extracted_text/
+*.log
+*.err.log
+.mobile-server*.log
+start-mobile-server.ps1
+stop-mobile-server.ps1

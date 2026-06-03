@@ -1,0 +1,1903 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BUSN3001 Final Discussion Practice</title>
+    <style>
+:root {
+  --bg: #f7f8fb;
+  --paper: #ffffff;
+  --ink: #18202c;
+  --muted: #667085;
+  --line: #d8dee8;
+  --accent: #0d6b68;
+  --accent-2: #8a4f15;
+  --soft: #e8f4f3;
+  --warning: #fff2d8;
+  --shadow: 0 14px 40px rgba(24, 32, 44, 0.08);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 40px;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  min-width: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-mark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+}
+
+.course,
+.label {
+  margin: 0 0 4px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 760;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.16;
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: clamp(26px, 4vw, 44px);
+}
+
+h3 {
+  font-size: 21px;
+}
+
+p {
+  line-height: 1.68;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav a,
+button,
+select,
+input {
+  font: inherit;
+}
+
+nav a,
+button {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+nav a {
+  padding: 9px 12px;
+  font-size: 14px;
+}
+
+button {
+  min-height: 40px;
+  padding: 9px 13px;
+  font-weight: 700;
+}
+
+button:hover,
+nav a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+main {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  min-width: 0;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 28px;
+  padding: 52px 0 28px;
+  min-width: 0;
+}
+
+.intro > *,
+.exam-card,
+.prediction-card,
+.topic-card,
+.question-card {
+  min-width: 0;
+}
+
+.intro-copy {
+  padding: 36px 0;
+}
+
+.intro-copy p:last-child {
+  max-width: 780px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.exam-card {
+  align-self: center;
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.exam-card div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.exam-card div:last-child {
+  border-bottom: 0;
+}
+
+.metric {
+  color: var(--accent-2);
+  font-size: 36px;
+  font-weight: 850;
+}
+
+.section {
+  padding: 38px 0;
+}
+
+.notice {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 8px 0 20px;
+  padding: 16px 18px;
+  border: 1px solid #edc56e;
+  border-radius: 8px;
+  background: #fff7df;
+  color: #4f3512;
+  line-height: 1.55;
+}
+
+.section-heading {
+  max-width: 820px;
+  margin-bottom: 22px;
+}
+
+.section-heading p:last-child {
+  color: var(--muted);
+}
+
+.prediction-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.prediction-card,
+.topic-card,
+.question-card,
+.exam-draw {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 0 8px 28px rgba(24, 32, 44, 0.05);
+}
+
+.prediction-card {
+  padding: 20px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.prediction-card:focus-visible {
+  outline: 3px solid rgba(13, 107, 104, 0.3);
+  outline-offset: 3px;
+}
+
+.prediction-top {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.probability {
+  white-space: nowrap;
+  color: var(--accent-2);
+  font-weight: 850;
+}
+
+.bar {
+  height: 9px;
+  margin: 16px 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eef1f5;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #47a19d);
+}
+
+.prediction-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.prediction-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.toolbar,
+.practice-controls,
+.exam-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.tab-button.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.topic-list,
+.question-list,
+.exam-questions {
+  display: grid;
+  gap: 14px;
+}
+
+.topic-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.topic-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 20px;
+  background: linear-gradient(90deg, var(--soft), #fff);
+}
+
+.topic-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding: 20px;
+}
+
+.topic-body ul,
+.answer-block ul,
+.vocab-list {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  line-height: 1.7;
+}
+
+.mini-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 820;
+  color: var(--accent-2);
+  text-transform: uppercase;
+}
+
+.practice-controls label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 720;
+}
+
+select,
+input {
+  min-height: 42px;
+  min-width: 230px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.question-card {
+  padding: 20px;
+}
+
+.question-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.question-card h3 {
+  margin-bottom: 12px;
+}
+
+.question-text {
+  color: var(--ink);
+  font-size: 17px;
+}
+
+.translated-question {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.answer-toggle {
+  margin-top: 10px;
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.answer-toggle:hover {
+  color: #fff;
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.answer-panel {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.answer-panel.open {
+  display: grid;
+}
+
+.answer-block {
+  padding: 16px;
+  border-radius: 8px;
+  background: #fafbfc;
+}
+
+.answer-block.full {
+  grid-column: 1 / -1;
+  background: var(--warning);
+}
+
+.answer-block p {
+  margin: 8px 0 0;
+}
+
+.exam-mode {
+  margin-bottom: 40px;
+}
+
+.exam-draw {
+  padding: 18px;
+}
+
+.exam-draw + .exam-draw {
+  margin-top: 12px;
+}
+
+footer {
+  padding: 28px 16px 44px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .topbar,
+  .intro,
+  .topic-body,
+  .answer-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  nav {
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    min-width: 0;
+  }
+
+  nav a {
+    flex: 0 0 auto;
+  }
+
+  .exam-card div {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .exam-card div span:last-child {
+    min-width: 0;
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+
+  .prediction-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    padding-top: 28px;
+  }
+
+  .intro-copy {
+    padding: 10px 0;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  select,
+  input {
+    min-width: min(100%, 320px);
+  }
+}
+
+</style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">B3</span>
+        <div>
+          <p class="course">BUSN3001 Final Exam</p>
+          <h1>Discussion Question Practice</h1>
+        </div>
+      </div>
+      <nav aria-label="Page sections">
+        <a href="#prediction">Prediction</a>
+        <a href="#topics">Knowledge</a>
+        <a href="#practice">Questions</a>
+        <a href="#exam-mode">Exam Mode</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div class="intro-copy">
+          <p class="label">Built from your lecture slides, tutorial notes, and exam practice notes</p>
+          <h2>先按复习优先级整理，再练像 tutorial 一样的论述题。</h2>
+          <p>
+            Section B 有三道 discussion questions。这里的练习按老师 tutorial 的口径整理：
+            define the theory, identify incentives and costs, apply to the scenario, then critically evaluate.
+          </p>
+        </div>
+        <div class="exam-card" aria-label="Exam structure">
+          <div>
+            <span class="metric">3</span>
+            <span>Discussion questions</span>
+          </div>
+          <div>
+            <span class="metric">80%</span>
+            <span>Section B weighting</span>
+          </div>
+          <div>
+            <span class="metric">70</span>
+            <span>Practice questions</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice" aria-label="Practice disclaimer">
+        <strong>Important:</strong>
+        <span>
+          These practice questions are for extra practice only. They are not indicative of the final exam's
+          coverage, standard, or difficulty. The exam structure is discussed in the Week 10 and Week 12 lectures.
+        </span>
+      </section>
+
+      <section id="prediction" class="section">
+        <div class="section-heading">
+          <p class="label">Revision priority, not exam prediction</p>
+          <h2>更适合优先复习的知识点分布</h2>
+          <p>这不是押题，只是根据 tutorial 题型、exam practice notes 和 Week 12 复习页整理出的复习优先级。</p>
+        </div>
+        <div id="predictionGrid" class="prediction-grid"></div>
+      </section>
+
+      <section id="topics" class="section">
+        <div class="section-heading">
+          <p class="label">Knowledge bank</p>
+          <h2>每个分布下面到底要会什么</h2>
+          <p>先看中文讲解，再背英文关键词。考试时不要整段硬倒，要按题目要求挑着写。</p>
+        </div>
+        <div class="toolbar">
+          <button class="tab-button active" data-topic-filter="all">All topics</button>
+        </div>
+        <div id="topicList" class="topic-list"></div>
+      </section>
+
+      <section id="practice" class="section">
+        <div class="section-heading">
+          <p class="label">Tutorial-style questions</p>
+          <h2>Tutorial 原题 + 额外练习题</h2>
+          <p>每题格式：英文题目、中文题目、中文答题思路、中文回答、英文回答、需要背的英文单词。</p>
+        </div>
+        <div class="practice-controls">
+          <label>
+            Filter by topic
+            <select id="questionFilter" aria-label="Filter questions by topic">
+              <option value="all">All topics</option>
+            </select>
+          </label>
+          <label>
+            Search
+            <input id="searchInput" type="search" placeholder="agency, EMH, CSR..." />
+          </label>
+          <button id="collapseAll" type="button">Collapse answers</button>
+        </div>
+        <div id="questionList" class="question-list"></div>
+      </section>
+
+      <section id="exam-mode" class="section exam-mode">
+        <div class="section-heading">
+          <p class="label">Exam mode</p>
+          <h2>随机抽三道，模拟 Section B</h2>
+          <p>建议先用 10 分钟列 bullet points，再打开答案对照有没有漏 theory、application 和 critical evaluation。</p>
+        </div>
+        <div class="exam-actions">
+          <button id="drawExam" type="button">Draw 3 questions</button>
+          <button id="clearExam" type="button">Clear</button>
+        </div>
+        <div id="examQuestions" class="exam-questions" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Study strategy: memorise vocabulary, not fixed paragraphs. In the exam, answer the exact question asked.</p>
+    </footer>
+
+    <script>
+const topics = [
+  {
+    id: "agency",
+    name: "Agency theory / PAT contracting",
+    probability: "30-35%",
+    weight: 35,
+    reason: "Exam practice notes already use agency, and Weeks 4-6 repeatedly connect agency costs, contracts, bonus plans, debt covenants and accounting information.",
+    knowledge: [
+      "代理关系的核心是：一方把决策权交给另一方（agency relationship; delegation of decision-making authority）。例如股东把经营决策交给经理，债权人把资金交给公司使用。",
+      "问题来自利益不一致和信息不对称（conflict of interests; information asymmetry / incomplete information）。代理人可能追求自己的利益（self-interest），而委托人无法完全观察代理人的努力、选择和真实信息。",
+      "代理成本包括三类：监督成本、约束成本和剩余损失（monitoring costs; bonding costs; residual loss）。监督成本是委托人花钱检查代理人；约束成本是代理人花钱承诺自己会好好做；剩余损失是即使用了控制机制，利益仍未完全一致造成的损失。",
+      "常见代理关系包括：股东与经理（shareholder-manager）、债权人与公司/股东（debtholder-firm/shareholders）、老板与员工（owner-employee）、董事会与股东（board-shareholders）、控股股东与少数股东（controlling shareholders-minority shareholders）。",
+      "降低代理成本的机制包括财务报告（financial reporting）、审计（audits）、董事会监督（board monitoring）、债务契约（debt covenants）、奖金计划（bonus plans）、股票或期权激励（share/options compensation），以及把决策管理权和决策控制权分开（separation of decision management and decision control）。",
+      "写论述题时要有批判（critical evaluation）：这些机制能降低代理成本（reduce agency costs），但也可能制造新问题，例如奖金计划诱发盈余管理（earnings management），期权激励诱发过度冒险（excessive risk-taking）。"
+    ],
+    english: [
+      "principal, agent, delegation of decision-making authority",
+      "information asymmetry, incomplete information, moral hazard, adverse selection",
+      "monitoring costs, bonding costs, residual loss",
+      "nexus of contracts, decision management, decision control",
+      "debt covenants, accounting-based bonus plans, employee stock options"
+    ],
+    writing: "先定义 agency relationship，再逐个识别 principal/agent、delegation、conflict of interests 和 information asymmetry。然后写 agency costs 和控制机制，最后评价这些机制不是完美解法。"
+  },
+  {
+    id: "regulation",
+    name: "Regulation and standard-setting",
+    probability: "25-30%",
+    weight: 30,
+    reason: "Practice Question 3 is regulation. Week 12 explicitly flags public vs private interests theory and asks how incentives/costs affect stakeholders.",
+    knowledge: [
+      "反监管观点（anti-regulation / free-market perspective）认为，公司和市场本身有激励提供信息；如果披露太差，公司会被资本市场惩罚（market-based penalties）。因此强制监管可能导致信息过度供给（oversupply of information），也可能限制公司选择最能反映自身情况的会计方法。",
+      "支持监管观点（pro-regulation perspective）认为，会计信息有公共物品特征（public good），很多人使用信息但不直接承担生产成本，所以市场可能供给不足。监管可以减少市场失灵（market failure），提高可靠性和可比性（reliability and comparability）。",
+      "公共利益理论（public interest theory）认为，监管者代表社会整体利益（society as a whole），会在社会收益大于社会成本时引入监管（social benefits exceed social costs）。",
+      "俘获理论（capture theory）认为，监管一开始可能是为了公共利益，但后来监管过程可能被被监管行业控制（captured by the regulated industry），使规则服务于该行业。",
+      "私人利益理论/经济利益集团理论（private interest theory / economic interest group theory）认为，所有人包括监管者、政治家和企业都会追求自身利益（self-interest）。最终规则往往反映政治上更有影响力群体的利益（politically effective groups）。",
+      "评价准则是否中立时要写：会计准则会影响财富分配（wealth distribution），因此很难完全客观或中立（objective / neutral）；提交意见（submissions）、游说（lobbying）、成本收益判断（cost-benefit judgements）和政治压力（political pressure）都会影响准则结果。"
+    ],
+    english: [
+      "public interest theory, capture theory, private interest theory",
+      "standard-setting process, submissions, lobbying, cost-benefit analysis",
+      "neutral arbiter, politically effective groups, wealth distribution",
+      "market failure, public good, comparability, free-market perspective"
+    ],
+    writing: "这类题不要只列三个理论。要用理论解释为什么规则可能服务不同利益集团，并评价 accounting standards 是否真的 objective/neutral。"
+  },
+  {
+    id: "cmr",
+    name: "Capital market research / EMH",
+    probability: "20-25%",
+    weight: 25,
+    reason: "Weeks 8-9 tutorials are full of contemporary cases: Musk tweets, Volkswagen emissions, insider information and no price reaction.",
+    knowledge: [
+      "股票价格理论上等于未来预期股利或现金流的现值（present value of expected future dividends / cash flows），并且要用反映风险的折现率折现（discount rate reflecting risk）。",
+      "半强式有效市场假说（semi-strong form EMH）认为，所有公开可获得的信息（publicly available information）都会快速、无偏地反映到股价中（rapidly and unbiasedly impounded into share prices）。会计研究通常默认讨论的是这一种有效市场。",
+      "信息含量（information content）指的是：如果一项披露改变了投资者对未来现金流或风险的预期（expectations about future cash flows or risk），它就可能引起异常股价反应（abnormal returns）。",
+      "事件研究（event study）的基本逻辑是：先估计如果没有该信息时股票本来应该有的正常收益（normal / expected returns），再和实际收益（actual returns）比较，差额就是异常收益（abnormal returns）。",
+      "没有股价反应（no share price reaction）不等于信息没用。可能信息早已被预期（anticipated）、可信度不足（not credible）、被同一天其他消息抵消（offsetting information），或者它主要对非投资者群体有用（relevant to non-investor stakeholders）。",
+      "这一块还要会写信息转移效应（information transfer effect / spillover effect）、公司规模效应（firm size effect）、权益资本成本（cost of equity capital）、自愿披露如何降低信息不对称（voluntary disclosure reduces information asymmetry）。"
+    ],
+    english: [
+      "semi-strong form efficiency, publicly available information",
+      "expected future cash flows, discount rate, risk premium",
+      "unexpected earnings, abnormal returns, information content",
+      "CAPM, market model, joint testing problem",
+      "information transfer effect, cost of equity capital"
+    ],
+    writing: "看到 share price、tweet、environmental information、earnings announcement，就先问：这条信息是否改变 expected future cash flows 或 discount rate？再评价市场反应的限制。"
+  },
+  {
+    id: "earnings",
+    name: "Earnings management",
+    probability: "15-20%",
+    weight: 20,
+    reason: "Week 5 tutorial and lecture heavily emphasise earnings management, and it links naturally to agency and PAT.",
+    knowledge: [
+      "盈余管理（earnings management）是管理层有意干预财务报告或真实交易安排（intervention in financial reporting or structuring transactions），使报告利润偏离中立应用会计准则时本应呈现的结果（neutral application of GAAP）。",
+      "应计基础盈余管理（accruals-based earnings management）是通过会计估计和判断影响利润，例如坏账准备（allowance for doubtful debts）、折旧（depreciation）、减值（impairment）和各类准备（provisions）。",
+      "真实活动盈余管理（real earnings management）是通过改变真实经营活动影响利润，例如提前销售（accelerating sales）、出售资产（asset sales）、推迟研发（cutting or delaying R&D）或改变生产安排（production decisions）。",
+      "奖金计划假说（bonus plan hypothesis）认为，如果经理奖金取决于会计利润（accounting-based bonus plans），经理可能在奖金区间内调高利润；如果目标已经达不到，可能一次性把坏消息都确认，叫做洗大澡（take a bath）。",
+      "债务假说（debt hypothesis）认为，接近违反债务契约的公司（close to covenant breach）可能调高或平滑利润（income-increasing choices / income smoothing），以避免技术性违约（technical default）。",
+      "政治成本假说（political cost hypothesis）认为，规模大、容易被公众或政府关注的公司（large / visible firms）可能压低利润，避免被认为赚取过高利润或受到政治审查（political scrutiny）。",
+      "CEO 更替时（CEO changeover），新 CEO 可能先确认大量损失（write-downs），把责任归给前任，之后再让利润回升（accrual reversals / upward earnings management）。"
+    ],
+    english: [
+      "accruals-based earnings management, real earnings management",
+      "discretionary accruals, non-discretionary accruals",
+      "bonus plan hypothesis, debt hypothesis, political cost hypothesis",
+      "take a bath, income smoothing, analyst forecasts"
+    ],
+    writing: "先定义 EM，再区分 accruals-based 和 real EM。后面一定要写 motivation，不要只写方法。最后加一句 empirical evidence is consistent with, not proof of, EM。"
+  },
+  {
+    id: "framework",
+    name: "Conceptual Framework / measurement",
+    probability: "10-15%",
+    weight: 15,
+    reason: "Week 4 tutorial has many conceptual framework questions, and Week 12 course review still highlights positive vs normative theory.",
+    knowledge: [
+      "概念框架（Conceptual Framework）是规范性理论（normative theory），因为它不是描述现实中公司怎么做，而是规定财务报告应该达到什么目标、信息应该具备什么特征、准则制定应依据什么概念（prescribes what should be done）。",
+      "通用目的财务报告（general purpose financial reporting / GPFR）的目标是向现有和潜在投资者、贷款人及其他债权人（existing and potential investors, lenders and other creditors）提供有用信息，帮助他们作出是否向企业提供资源的决策。",
+      "这个使用者定义可以被批评为过窄（too narrow），因为员工、监管者、社区、公众和环境利益群体（employees, regulators, communities, the public, environmental groups）也可能受到公司影响，但不一定被放在核心位置。",
+      "两个基本质量特征是相关性和如实反映（relevance and faithful representation）。相关性强调信息能影响决策（capable of making a difference）；如实反映强调完整、中立、尽可能无错误（complete, neutral and free from error）。",
+      "四个增强质量特征是可比性、可验证性、及时性和可理解性（comparability, verifiability, timeliness and understandability）。它们不是替代基本特征，而是在基本有用的基础上增强信息质量（enhancing qualitative characteristics）。",
+      "资产定义要抓三点：企业有一项权利（right）；该权利有产生经济利益的潜力（potential to produce economic benefits）；企业控制该权利（control）。",
+      "计量问题（measurement issues）之所以难，是因为历史成本、公允价值、现值等（historical cost, fair value, present value）都有取舍，没有一个基础能完美适用于所有资产和负债，所以 IASB 倾向混合计量模式（mixed attribute model）。"
+    ],
+    english: [
+      "normative theory, prescriptive theory",
+      "general purpose financial reporting, existing and potential investors, lenders and creditors",
+      "relevance, faithful representation, comparability, verifiability, timeliness, understandability",
+      "measurement uncertainty, historical cost, fair value, mixed attribute model"
+    ],
+    writing: "这类题要会批判：CF 提高 consistency 和 accountability，但也可能政治化、回避 measurement 难题、过度关注 financial users。"
+  },
+  {
+    id: "csr",
+    name: "CSR and CSR disclosure",
+    probability: "10-15%",
+    weight: 15,
+    reason: "Week 9 is contemporary and naturally connects stakeholder theory, CMR, greenwashing, cost of equity and proprietary costs.",
+    knowledge: [
+      "企业社会责任（corporate social responsibility / CSR）强调公司不只考虑股东（shareholders），还要考虑员工、消费者、社区、监管者、环境等更广泛利益相关者（broader stakeholders）。",
+      "狭义股东观（narrow shareholder view）认为，公司主要是为股东积累财富的工具（mechanism for shareholder wealth accumulation）。因此 CSR 只有在能帮助赚钱、维护声誉、避免监管或降低风险时才合理。",
+      "利益相关者观（stakeholder view）认为，公司在创造财富过程中也应对人和环境负责（responsible for impacts on people and the environment），不能孤立地只看某一个利益相关者（stakeholders' interests should be considered together）。",
+      "CSP 和 CFP 的关系有五种解释：慈善假说（charity hypothesis）、私人利益假说（private interest hypothesis）、投资假说（investment hypothesis）、信号假说（signaling hypothesis）和漂绿假说（greenwashing hypothesis）。",
+      "CSR 披露（CSR disclosure）如果可信且提供增量信息（credible and incremental information），可能降低信息不对称和不确定性（information asymmetry and uncertainty），从而降低权益资本成本（cost of equity capital）。",
+      "CSR 披露也有成本，尤其是专有成本（proprietary costs）。它可能泄露竞争敏感信息（competition-sensitive information），例如技术、未来产品、发展流程或销售策略，让竞争对手受益。",
+      "漂绿（greenwashing）指公司披露或宣传 CSR 只是为了制造好形象（create an image of good firms），而不一定有真实的社会或环境表现（substantive CSR performance）。"
+    ],
+    english: [
+      "stakeholder view, narrow view, corporate social responsibility",
+      "corporate social performance, corporate financial performance",
+      "charity hypothesis, private interest hypothesis, investment hypothesis, signaling hypothesis, greenwashing hypothesis",
+      "information asymmetry, cost of equity capital, proprietary costs"
+    ],
+    writing: "CSR 题最容易写散。抓住一个主线：why firms do CSR/disclose CSR，benefits vs costs，then credibility and stakeholder perspective。"
+  }
+];
+
+const questions = [
+  {
+    topic: "agency",
+    title: "Founder-managed firm expansion",
+    probability: "Very high",
+    text: "Carefully identify the agency relationships that may arise when a founder-managed private company expands, takes on external debt, hires professional managers, and eventually lists on a stock exchange. What agency costs are likely to arise, and what mechanisms may be used to reduce those costs?",
+    chinese: [
+      "Agency relationship 是 principal 将 decision-making authority 委托给 agent。",
+      "扩张前已有 owner/manager 与 employees、firm 与 trade creditors 的关系。",
+      "外部债务进入后，debtholders 是 principal，firm/shareholders 是 agent，可能有资产替代、提高风险、过度分红等问题。",
+      "上市后 ownership and control separation 加大，shareholders 与 managers 之间出现 moral hazard 和 information asymmetry。",
+      "Agency costs 包括 monitoring costs、bonding costs、residual loss。",
+      "控制机制包括 board monitoring、external audit、debt covenants、bonus plans、shares/options、separation of decision management and decision control。",
+      "批判：这些机制能降低成本，但也可能制造 earnings management 或 excessive risk-taking。"
+    ],
+    english: "An agency relationship exists when a principal delegates decision-making authority to an agent. As the firm expands, agency relationships arise between owners and employees, debtholders and the firm, outside shareholders and managers, and potentially minority and controlling shareholders. Agency costs include monitoring costs, bonding costs and residual loss. Debtholders may use covenants to restrict leverage, dividends or risky investments. Shareholders may rely on boards, audits, incentive contracts, bonus plans, shares and options. Fama and Jensen's separation of decision management and decision control also helps reduce agency costs. However, these mechanisms are imperfect: accounting-based bonuses may encourage earnings management, and options may encourage excessive risk-taking.",
+    vocab: ["agency relationship", "decision-making authority", "information asymmetry", "monitoring costs", "bonding costs", "residual loss", "debt covenants"]
+  },
+  {
+    topic: "agency",
+    title: "Debt covenants and borrower incentives",
+    probability: "Very high",
+    text: "In an existing debt agreement, what shareholder-debtholder agency problems may arise? Why would lenders use accounting-based debt covenants, and why might a borrowing firm voluntarily agree to such restrictions?",
+    chinese: [
+      "Debtholders 把资金交给 firm/shareholders 使用，所以是 principal-agent relationship。",
+      "债权人收益通常固定，但承担 default downside；股东享有成功项目的 upside。",
+      "借款后，股东可能投资高风险项目、增加后续债务、支付过高股利，转移 debtholder wealth。",
+      "Debt covenants 可限制 leverage、dividends、future debt 或要求 minimum interest coverage。",
+      "Borrowing firm 愿意接受 covenants，因为降低 debtholders perceived risk，可能换来 lower cost of debt。",
+      "Accounting numbers 因此在 contracting 中有 monitoring role。"
+    ],
+    english: "The lender is a principal and the borrowing firm or shareholders are agents because the lender has surrendered control over funds. Shareholders may prefer riskier projects because they capture the upside while debtholders bear much of the downside if the firm defaults. Lenders therefore use accounting-based covenants, such as leverage limits, dividend restrictions and interest coverage requirements, to monitor and restrict opportunistic behaviour. A borrower may agree because credible restrictions reduce expected risk to lenders and can lower the cost of debt.",
+    vocab: ["shareholder-debtholder agency problem", "asset substitution", "technical default", "restrictive covenant", "cost of debt"]
+  },
+  {
+    topic: "agency",
+    title: "Employee stock options",
+    probability: "High",
+    text: "Employee stock options may be used to align managers' risk preferences with those of shareholders. Explain why this risk alignment function may be necessary and why options may be preferred to ordinary shares.",
+    chinese: [
+      "Managers 的财富、人力资本和工作都集中在同一家公司，通常不像 shareholders 那样 well-diversified。",
+      "Shareholders 只关心 systematic risk，但 managers 会担心 total risk，可能拒绝股东希望承担的正 NPV 风险项目。",
+      "普通股会进一步集中经理财富，可能让 managers 更保守。",
+      "Call options 给 managers upside exposure，但 downside limited to options lapsing。",
+      "因此 options 鼓励 managers 接受更高风险、可能提高 shareholder wealth 的项目。",
+      "批判：options 也可能鼓励 excessive risk-taking 或 manipulation around vesting/exercise。"
+    ],
+    english: "Managers are not well-diversified because their employment and human capital are tied to one firm. Shareholders can diversify and may care mainly about systematic risk, while managers may avoid projects with high total risk even if shareholders prefer them. Granting ordinary shares may worsen this because it further concentrates managerial wealth. Call options provide upside exposure with limited downside, encouraging managers to undertake riskier value-enhancing projects. However, options can also create incentives for excessive risk-taking or earnings management around vesting and exercise dates.",
+    vocab: ["well-diversified investors", "systematic risk", "total risk", "call options", "upside risk", "downside risk"]
+  },
+  {
+    topic: "regulation",
+    title: "Neutrality of accounting standards",
+    probability: "Very high",
+    text: "Given the political nature of accounting standard-setting, can accounting standards be considered neutral? Discuss using public interest theory, capture theory and private interest theory of regulation.",
+    chinese: [
+      "Standard-setting 会收 submissions、考虑 cost-benefit、面对 lobbying。",
+      "Public interest theory 认为 regulators 为 society as a whole 服务，是 neutral arbiter。",
+      "Capture theory 认为 regulation 可能最初为公共利益，但后来被 regulated industry 捕获。",
+      "Private interest theory 认为所有人包括 regulators 都追求 self-interest，规则反映 politically effective groups 的利益。",
+      "Accounting standards 会影响 wealth distribution，因此很难完全 objective/neutral。",
+      "结论：标准可以追求 neutrality，但最终形式受 economic consequences、political pressure 和 lobbying 影响。"
+    ],
+    english: "Accounting standards are unlikely to be completely neutral because standard-setting affects wealth distribution and is shaped by submissions, lobbying and cost-benefit judgements. Public interest theory assumes regulators act for society as a whole, so standards may be designed to maximise social welfare. Capture theory suggests regulation may initially serve the public interest but later be captured by the regulated industry. Private interest theory assumes regulators and constituents are self-interested, so regulation reflects the interests of politically effective groups. Standards may aspire to neutrality, but their final form is often influenced by economic and political considerations.",
+    vocab: ["public interest theory", "capture theory", "private interest theory", "neutral arbiter", "politically effective groups", "wealth distribution"]
+  },
+  {
+    topic: "regulation",
+    title: "Climate regulation and private interests",
+    probability: "High",
+    text: "If regulators act according to private interest theory, what is the likelihood of strong regulation to reduce climate change, particularly if powerful business corporations oppose it?",
+    chinese: [
+      "Private interest theory 假设 regulators、politicians 和 business groups 都受 self-interest 驱动。",
+      "强 climate regulation 可能给公司带来 compliance costs、限制消费和生产，因此 powerful corporations 可能反对。",
+      "如果这些企业影响 reappointment、votes、political support 或 funding，regulators 可能不愿推行强规则。",
+      "未来 generations 和 general public 的利益可能分散，lobbying power 较弱。",
+      "所以从 private interest theory 看，强监管的可能性较低，除非监管者能从中获得政治收益。",
+      "可批判：public interest theory 会给出不同预测，即如果 social benefits 大于 social costs，应引入监管。"
+    ],
+    english: "Private interest theory assumes that regulators and politicians are motivated by self-interest. Strong climate regulation may impose costs on powerful corporations, and those corporations may oppose regulation through lobbying or political pressure. If regulators depend on business support, votes, funding or reappointment, they may avoid tough regulation unless it benefits them politically. The interests of future generations and the wider public may be diffuse and less politically effective. Therefore, private interest theory predicts limited strong regulation where powerful corporations oppose it, although public interest theory would predict regulation if social benefits exceed social costs.",
+    vocab: ["self-interest", "political support", "reappointment", "compliance costs", "future generations", "social benefits and social costs"]
+  },
+  {
+    topic: "regulation",
+    title: "Audits without regulation",
+    probability: "Medium high",
+    text: "Would you expect independent financial statement audits to exist for listed companies even in the absence of regulation requiring them? Why or why not?",
+    chinese: [
+      "从 agency/contracting 视角，即使没有强制要求，也可能有 voluntary demand for audits。",
+      "Managers 和 shareholders/debtholders 存在信息不对称，外部方需要可信第三方验证。",
+      "Audits 提高 accounting information reliability，降低 perceived risk，可能降低 cost of capital。",
+      "历史上很多公司在法规要求前也进行 audits。",
+      "但 audit 必须被认为 independent，而且 statements content 需要 sufficiently well-defined。",
+      "反方可说：如果没有 regulation，某些公司可能少审计或使用低质量审计，因为审计有成本。"
+    ],
+    english: "Even without regulation, there may be a contractual demand for independent audits. Because managers have more information than outside shareholders and debtholders, credible third-party assurance can increase the perceived reliability of accounting data. This can reduce perceived risk and lower the firm's cost of capital. Historical evidence also suggests many firms obtained audits before legal requirements. However, this argument depends on the auditor being perceived as independent and the content of financial statements being sufficiently well-defined.",
+    vocab: ["contractual demand", "third-party assurance", "auditor independence", "cost of capital", "perceived reliability"]
+  },
+  {
+    topic: "cmr",
+    title: "No share price reaction",
+    probability: "Very high",
+    text: "A listed company releases new environmental performance information, but its share price does not appear to change. Evaluate whether this means the information is irrelevant and should not be disclosed in the future.",
+    chinese: [
+      "Semi-strong EMH 下，公开信息若有新内容，应快速且无偏地反映到股价。",
+      "没有价格反应可能表示信息已被 anticipated、来自 alternative sources、not credible，或不影响 expected cash flows/risk。",
+      "但不能直接说 irrelevant。",
+      "可能同日有 offsetting information；expected return model 错误；市场非完全有效；买卖双方观点相反导致 volume change 而非 price change。",
+      "Capital market reaction 只代表 investors，不代表 regulators、employees、communities 等 stakeholders。",
+      "因此没有 apparent price reaction 不足以说明不该披露。"
+    ],
+    english: "Under semi-strong form EMH, publicly available information should be rapidly and unbiasedly incorporated into share prices. A lack of price reaction may suggest the information was already anticipated, available from other sources, not credible, or not expected to affect future cash flows or risk. However, this does not prove irrelevance. Other news may offset the effect, the expected return model may be wrong, or trading volume may change without a price change. Capital market tests focus on investors only. Environmental information may be relevant to other stakeholders. Therefore, absence of an apparent share price reaction is not sufficient reason to stop disclosure.",
+    vocab: ["semi-strong form EMH", "publicly available information", "expected future cash flows", "discount rate", "offsetting information", "trading volume"]
+  },
+  {
+    topic: "cmr",
+    title: "Musk tweet and share price",
+    probability: "High",
+    text: "A CEO tweets that the company has secured major financing, and the share price rises sharply. Why might this tweet be important to investors under capital market research and the EMH?",
+    chinese: [
+      "CEO tweet 可以被看作 alternative source of publicly available information。",
+      "如果内容与 financing、production、performance 相关，可能改变 investors 对 expected future cash flows 或 risk 的判断。",
+      "Semi-strong EMH 下，市场会把公开的新信息 impound into share price。",
+      "如果信息 material 且 credible，股价上涨合理。",
+      "争议在于信息是否 truly new、material、credible，以及是否误导投资者。",
+      "如果 financing 并未 secured，市场反应说明虚假或误导性披露也可能影响价格。"
+    ],
+    english: "The tweet may be important because it is a public source of information about the firm's financing and future prospects. If investors believe the information is material and credible, it may change expectations about future cash flows or risk. Under semi-strong form EMH, new publicly available information should be incorporated into share prices. The key issues are whether the tweet contained new information, whether it was material, and whether it was credible or misleading. A sharp price reaction suggests investors treated it as relevant to valuation.",
+    vocab: ["material information", "alternative source of information", "credible", "misleading disclosure", "future prospects"]
+  },
+  {
+    topic: "cmr",
+    title: "Insider trading and market efficiency",
+    probability: "High",
+    text: "If individuals make large gains by trading on insider information, does this indicate that the market is inefficient? Explain with reference to the different forms of EMH.",
+    chinese: [
+      "通常 CMR 使用 semi-strong form EMH，市场只对 publicly available information 有效率。",
+      "Insider information 是 private information，所以用它赚钱不推翻 semi-strong efficiency。",
+      "Strong form EMH 才要求 prices reflect all public and private information。",
+      "如果 insider trading 可赚钱，说明 strong form efficiency 不成立，但这本来就通常被认为不现实。",
+      "所以答案要区分 semi-strong 和 strong form，不要笼统说 market inefficient。"
+    ],
+    english: "This depends on the form of EMH being considered. Capital market research usually assumes semi-strong form efficiency, meaning prices reflect all publicly available information. Insider information is private, so profits from insider trading do not invalidate semi-strong efficiency. They would, however, be inconsistent with strong form efficiency, which assumes prices reflect all public and private information. Since strong form efficiency is generally considered unrealistic, insider gains do not necessarily show that the market is inefficient in the semi-strong sense.",
+    vocab: ["weak form", "semi-strong form", "strong form", "insider information", "private information"]
+  },
+  {
+    topic: "cmr",
+    title: "Information transfer effect",
+    probability: "Medium high",
+    text: "Would you expect an earnings announcement by one firm within an industry to affect the share prices of other firms in the same industry? Why or why not?",
+    chinese: [
+      "会，这叫 information transfer effect 或 spillover effect。",
+      "一个公司的 earnings announcement 可能包含 industry-wide information，例如需求、成本、监管或竞争环境变化。",
+      "同业公司股价也会反映这些信息。",
+      "如果消息说明整个行业更好，competitors 股价可能同向反应；如果说明 announcing firm 抢占市场份额，competitors 可能反向反应。",
+      "较早公告的公司 spillover effect 更明显，因为后面公告前行业信息已被 impounded。"
+    ],
+    english: "Yes, earnings announcements can affect other firms in the same industry through the information transfer or spillover effect. The announcement may reveal industry-wide information about demand, costs, regulation or competitive conditions. Competitors' prices may move in the same direction if the news implies better conditions for the whole industry, or in the opposite direction if it suggests the announcing firm is taking market share. The effect is often stronger for early announcements because later announcements contain less new industry-wide information.",
+    vocab: ["information transfer effect", "spillover effect", "industry-wide information", "competitors", "abnormal returns"]
+  },
+  {
+    topic: "earnings",
+    title: "Earnings management definition and motives",
+    probability: "High",
+    text: "What is earnings management? Explain why managers may engage in accruals-based or real earnings management around bonus plans, debt covenants, political scrutiny, or CEO changeovers.",
+    chinese: [
+      "Earnings management 是 managers use judgement in financial reporting 或 structure transactions 来改变 reported earnings。",
+      "Accruals-based EM 操纵 estimates，比如 depreciation、allowance、provisions。",
+      "Real EM 改变真实交易，例如提前销售、出售资产、削减 discretionary expenditure。",
+      "Bonus plan: 在 bonus range 内提高利润；远低于 lower bound 时可能 take a bath。",
+      "Debt covenant: 接近 covenant breach 时可能 income-increasing 或 smoothing。",
+      "Political cost: 大公司或 visible firms 可能降低利润以避免政治关注。",
+      "CEO changeover: 新 CEO 初期 big bath，把坏消息归咎前任，以后利润更容易上升。",
+      "批判：abnormal accruals 只能说明 consistent with EM，不能证明。"
+    ],
+    english: "Earnings management involves deliberate intervention in financial reporting or real transactions to alter reported earnings. Accruals-based earnings management uses discretion in estimates such as depreciation or doubtful debts. Real earnings management changes actual business activities to affect current earnings. Bonus plans may motivate managers to increase earnings within the bonus range or take a bath when targets are unattainable. Debt covenants may motivate income-increasing choices to avoid technical default. Political cost concerns may motivate visible firms to reduce reported profits. New CEOs may take a bath initially and report higher earnings later. However, abnormal accruals are only consistent with earnings management; they do not prove it.",
+    vocab: ["earnings management", "accruals-based", "real earnings management", "take a bath", "income smoothing", "political cost hypothesis"]
+  },
+  {
+    topic: "earnings",
+    title: "Analyst forecasts",
+    probability: "Medium high",
+    text: "Why might the existence of analyst earnings forecasts affect earnings management? Why might earnings management affect analyst forecasts?",
+    chinese: [
+      "公司可能管理 earnings 以 meet or beat analyst forecasts，因为 missed forecasts 会伤害股价和 manager reputation。",
+      "如果实际利润只差一点，managers 更可能 upward earnings management。",
+      "Analysts 也可能无法识别 EM，导致 forecasts 受被管理的 earnings 影响。",
+      "Analysts 为了保持 perceived accuracy，可能根据管理层信息调整 forecasts。",
+      "所以存在 chicken-and-egg problem：是 forecasts 驱动 EM，还是 managed earnings 影响 forecasts。"
+    ],
+    english: "Analyst forecasts may create earnings targets that managers try to meet or beat. Missing forecasts can harm share price, reputation and compensation, so managers close to the target may manage earnings upward. At the same time, earnings management may affect analyst forecasts because analysts may fail to detect managed earnings or may treat current earnings as persistent. Analysts may also adjust forecasts to maintain perceived accuracy. This creates a chicken-and-egg problem: forecasts may drive earnings management, while managed earnings may also shape forecasts.",
+    vocab: ["meet or beat", "analyst forecasts", "forecast accuracy", "earnings persistence", "chicken-and-egg problem"]
+  },
+  {
+    topic: "earnings",
+    title: "Conservative accounting and contracting",
+    probability: "Medium high",
+    text: "From a contracting perspective, why might organisations traditionally choose conservative accounting methods that report lower profits, net assets and equity?",
+    chinese: [
+      "Conservative accounting 提前确认 losses，延迟确认 gains，通常 lower assets/profits。",
+      "对 debtholders 有用，因为他们更关心 downside risk 和 default risk。",
+      "它让 bad news 更及时进入 accounting numbers，使 covenants 更有效。",
+      "对 shareholders 也可限制 managers overstate earnings/assets 的机会。",
+      "因此可降低 agency costs 和 monitoring costs，提高 accounting numbers 在 contracting 中的可信度。",
+      "可能降低 debt/equity finance 的 cost，因为资本提供者感知风险更低。"
+    ],
+    english: "Conservative accounting recognises losses earlier than gains and tends to report lower profits, assets and equity. From a contracting perspective, this is useful because debtholders are more exposed to downside risk and need timely warning of deterioration. Conservative numbers make debt covenants more effective and reduce managers' ability to overstate earnings or assets. This can lower agency costs and monitoring costs, increase the credibility of accounting numbers, and potentially reduce the cost of debt and equity capital.",
+    vocab: ["conservative accounting", "timely loss recognition", "downside risk", "monitoring", "contracting efficiency"]
+  },
+  {
+    topic: "framework",
+    title: "Conceptual Framework users",
+    probability: "Medium",
+    text: "The IASB Conceptual Framework focuses on existing and potential investors, lenders and other creditors. Critically evaluate whether this definition of users is too narrow.",
+    chinese: [
+      "CF 的 GPFR objective 是为 existing and potential investors, lenders and other creditors 提供有用信息。",
+      "这些 users 需要依赖 GPFR，因为无法要求 tailored reports。",
+      "这种定义有实用性：标准制定更聚焦，避免考虑所有人的不同信息需求。",
+      "但它也可能太 narrow，排除 employees、regulators、communities、environmental groups、general public。",
+      "非金融专业用户也被默认有 reasonable knowledge，可能增加理解成本。",
+      "如果会计只服务资本提供者，可能忽视 social/environmental performance。",
+      "结论：定义提高了决策有用性的一致性，但也限制了 accountability 的范围。"
+    ],
+    english: "The Conceptual Framework defines primary users as existing and potential investors, lenders and other creditors because they rely on general purpose financial reports and cannot demand tailored reports. This focus makes standard-setting more manageable and consistent. However, it may be too narrow because employees, regulators, communities, environmental groups and the general public may also be affected by corporate activities and may have a right to know. The assumption that users have reasonable business and economic knowledge may also exclude less sophisticated users. Therefore, the definition improves focus but narrows the accountability role of financial reporting.",
+    vocab: ["general purpose financial reporting", "primary users", "reasonable knowledge", "accountability", "right to know"]
+  },
+  {
+    topic: "framework",
+    title: "Conceptual Framework as normative theory",
+    probability: "Medium",
+    text: "Explain why the Conceptual Framework can be described as a normative theory of accounting. What are the advantages and limitations of such a framework?",
+    chinese: [
+      "Normative theory 是 prescriptive，说明 accounting should be 怎么做。",
+      "CF 规定 GPFR objective、qualitative characteristics、asset/liability definitions、recognition 和 measurement guidance，因此是 normative。",
+      "优点：提高 consistency、comparability、standard-setter accountability，并在没有具体准则时提供 guidance。",
+      "也可减少每次制定准则都重新讨论基本概念的成本。",
+      "局限：CF 本身可能是政治过程残留；可能回避 measurement 难题；可能只 codify existing practice；也可能过度关注 financial performance。",
+      "结论：CF 有用但不是客观真理。"
+    ],
+    english: "The Conceptual Framework is normative because it prescribes what financial reporting should do and what qualities useful information should possess. It guides standard-setters on objectives, users, qualitative characteristics, definitions, recognition and measurement. Advantages include consistency, comparability, accountability and guidance where no specific standard exists. It can also reduce the cost of standard-setting. Limitations include political influence, failure to resolve contentious measurement issues, possible codification of existing practice, and a narrow focus on financial performance. It is useful guidance, not objective truth.",
+    vocab: ["normative theory", "prescriptive", "qualitative characteristics", "standard-setter accountability", "measurement issues"]
+  },
+  {
+    topic: "framework",
+    title: "Asset recognition and lottery ticket",
+    probability: "Medium",
+    text: "A company buys a lottery ticket. Does the ticket meet the definition of an asset under the Conceptual Framework, and should it be recognised on the balance sheet?",
+    chinese: [
+      "Asset definition 包括 right、potential to produce economic benefits、control。",
+      "彩票有 right：中奖收现金的权利；有 potential economic benefits：可能中奖或出售；有 control：公司控制该权利。",
+      "所以可以 argue it meets asset definition。",
+      "但 recognition 还要考虑 relevance 和 faithful representation，尤其 probability、measurement uncertainty、useful information。",
+      "单张彩票中奖概率极低，通常不应按大额潜在 winnings 确认为 asset，更可能 expense 或按 recoverable amount 处理。",
+      "可以补充：asset can exist even if probability is low，但 recognition 不一定合适。"
+    ],
+    english: "The lottery ticket may meet the asset definition because the company has a right, the right has potential to produce economic benefits, and the company controls that right. However, recognition is a separate issue. Because the probability of winning is very low and the most relevant faithfully represented amount is unlikely to be the possible prize, the ticket would normally not be recognised as a large asset. It may be expensed or recognised only at a recoverable amount if resale is intended. An asset can exist even when probability is low, but recognition may not provide useful information.",
+    vocab: ["right", "potential to produce economic benefits", "control", "recognition", "relevance", "faithful representation"]
+  },
+  {
+    topic: "csr",
+    title: "Why disclose CSR information",
+    probability: "Medium",
+    text: "Why might firms voluntarily disclose CSR information? Discuss possible benefits and costs, including capital market effects and proprietary costs.",
+    chinese: [
+      "CSR disclosure 可能由 legitimacy theory、stakeholder theory、institutional pressure 和 shareholder wealth maximisation 解释。",
+      "好处：降低 information asymmetry，提升 credibility，吸引 analysts/institutional investors，降低 cost of equity capital。",
+      "如果 CSR performance 好，standalone CSR report 更可信。",
+      "Signaling view: CSR disclosure 可能 signal strong future prospects。",
+      "成本：CSR 信息可能包含 competition-sensitive information，暴露 technologies、future products、selling strategies。",
+      "也可能有 greenwashing，披露只是塑造形象而非真实 performance。",
+      "结论取决于 disclosure 是否 credible、incremental、relevant，以及竞争环境。"
+    ],
+    english: "Firms may voluntarily disclose CSR information to gain legitimacy, meet stakeholder information needs, respond to institutional pressure, or maximise shareholder wealth. CSR disclosure may reduce information asymmetry and uncertainty, attract analyst following and institutional investors, and lower the cost of equity capital, especially when supported by strong CSR performance. It may also signal strong future prospects. However, CSR disclosure can impose proprietary costs if it reveals competition-sensitive information about technologies, future products or strategies. Some disclosure may also be greenwashing. Therefore, the benefits depend on credibility, relevance, incrementality and the competitive environment.",
+    vocab: ["CSR disclosure", "legitimacy theory", "stakeholder theory", "cost of equity capital", "proprietary costs", "greenwashing"]
+  },
+  {
+    topic: "csr",
+    title: "CSP and CFP",
+    probability: "Medium",
+    text: "Can we confidently conclude that better corporate social performance leads to better corporate financial performance? Explain the theoretical and empirical difficulties.",
+    chinese: [
+      "不能 confidently derive conclusive link。",
+      "Empirical studies 对 CSP-CFP relation 结果 mixed/inconclusive。",
+      "Reverse causation: 是 CSP 导致 CFP，还是 financially successful firms 更有资源做 CSR。",
+      "Omitted variables: 可能有 management quality、governance、industry 等同时影响 CSP 和 CFP。",
+      "理论上也有不同解释：charity、private interest、investment、signaling、greenwashing。",
+      "所以即使观察到 positive association，也不能简单说 CSR causes better financial performance。"
+    ],
+    english: "We cannot confidently conclude that better CSP causes better CFP because empirical evidence is mixed and causal inference is difficult. Reverse causation is possible: better financial performance may give firms resources to engage in CSR. Omitted variables, such as governance, management quality or industry conditions, may drive both CSP and CFP. Theoretical explanations also differ: CSR may be charity, managerial private benefit, investment, signaling or greenwashing. Therefore, a positive association does not necessarily prove that CSR causes better financial performance.",
+    vocab: ["corporate social performance", "corporate financial performance", "reverse causation", "omitted variables", "endogeneity", "signaling"]
+  },
+  {
+    topic: "csr",
+    title: "Narrow view versus stakeholder view",
+    probability: "Medium",
+    text: "With regard to the role of public corporations, compare the narrow shareholder view with the stakeholder view. How would each view explain CSR behaviour?",
+    chinese: [
+      "Narrow view 认为 corporations 是为 shareholders 积累财富的机制。",
+      "在 narrow view 下，CSR 合理性来自 profit motive：避免 regulation、维持 customer/community support、保护 reputation、降低风险。",
+      "Stakeholder view 更 normative，认为企业在创造财富过程中也应对 people 和 environment 负责。",
+      "它强调不能孤立看一个 stakeholder，利益要一起考虑。",
+      "所以 stakeholder view 下 CSR 不只是赚钱工具，也是一种 accountability 和 responsibility。",
+      "批判：stakeholder view 价值更宽，但可能难以确定如何权衡不同 stakeholders。"
+    ],
+    english: "The narrow shareholder view treats corporations as mechanisms for accumulating wealth for shareholders. Under this view, CSR is justified when it supports profitability, avoids regulation, improves reputation, or protects stakeholder support in ways that benefit shareholders. The stakeholder view is more normative and argues that corporations should be responsible for their impact on people and the environment. It emphasises that stakeholder interests should be considered together rather than in isolation. CSR is therefore not merely a profit tool but part of corporate accountability. However, the stakeholder view may struggle to specify how conflicting stakeholder interests should be balanced.",
+    vocab: ["narrow view", "shareholder wealth", "stakeholder view", "accountability", "corporate responsibility"]
+  }
+];
+
+function makeTutorial(week, topic, title, enQuestion, zhQuestion, zhApproach, zhAnswer, enAnswer, vocab) {
+  return {
+    source: `Week ${week} Tutorial`,
+    topic,
+    title,
+    enQuestion,
+    zhQuestion,
+    zhApproach,
+    zhAnswer,
+    enAnswer,
+    vocab,
+    probability: "Tutorial original"
+  };
+}
+
+const tutorialQuestions = [
+  makeTutorial(
+    2,
+    "regulation",
+    "Enron and SPEs",
+    "Enron accounted for their investment in Special Purpose Entities (SPE) using the 'cost method' even though they owned almost all of the equity in each SPE. How were they able to do this, and what effect did it have on Enron's published Debt / Assets ratio?",
+    "Enron 如何使用 SPE？为什么这种会计处理误导了 Enron 的真实财务风险？",
+    ["说明 SPE 的结构和表面上的 control 安排。", "解释为什么不 consolidation 会隐藏 debt 和 inflate revenue/profit。", "指出 rules-based accounting 的问题。"],
+    "Enron 向 SPE 提供大部分资金，但通过弱化投票权或让所谓 independent party 持有控制性投票权，声称自己不控制 SPE。SPE 借入大量债务并由 Enron 担保，但资产和负债没有合并进 Enron 报表。这低估了 leverage，也可能夸大 revenue 和 profit。",
+    "Enron provided most of the economic support for many SPEs but structured voting rights so that it could argue it did not control them. Because the SPEs were not consolidated, their debt and assets stayed off Enron's balance sheet, even though Enron often guaranteed the debt. This understated leverage and misrepresented Enron's financial risk.",
+    ["special purpose entity", "control", "voting rights", "off-balance-sheet debt", "leverage", "consolidation"]
+  ),
+  makeTutorial(
+    2,
+    "regulation",
+    "Mechanical standards and auditing",
+    "Referring to Healy and Palepu (2003), answer the following questions: (1) what are the disadvantages of mechanical and inflexible accounting standards? (2) Why do audit firms lobby for mechanical accounting and auditing standards? (3) What are the two strategies adopted by audit firms to increase their profits given the thin profit margins from audit services? What are the impacts of these strategies on the quality of audit services provided by audit firms?",
+    "机械化、缺乏弹性的会计和审计准则有什么优点和缺点？",
+    ["先写缺点：client 会设计交易绕规则。", "再写优点：降低审计成本、减少差异、提供 litigation defence。", "最后评价 rules vs substance。"],
+    "机械规则可能诱导公司专门设计交易以满足 letter of the law，却不反映 substance、risk 或真实 performance。但机械规则也能减少审计差异，降低审计成本，并在诉讼中为 auditor 提供防御。关键问题是规则是否牺牲了 faithful representation。",
+    "Mechanical standards can motivate firms to design transactions that comply with the letter of the rules while avoiding their substance. This may prevent accounts from reflecting true risk and performance. However, mechanical standards can reduce audit variability, lower audit costs and provide auditors with a litigation defence. The trade-off is between consistency and faithful representation.",
+    ["mechanical standards", "letter of the law", "substance", "audit variability", "litigation defence", "faithful representation"]
+  ),
+  makeTutorial(
+    2,
+    "agency",
+    "Analysts and Enron",
+    "Referring to Healy and Palepu (2003), on October 31 2001, just two months before Enron filed for bankruptcy, the mean analyst recommendation for Enron was 1.9 out of 5, where 1 is a 'strong buy' and 5 is a 'sell'. Why were analysts so slow to recognize the problems at Enron?",
+    "为什么即使有危险信号，分析师仍可能继续推荐 Enron？",
+    ["从 analyst incentives 写。", "解释 investment banking bonuses、management access、institutional investors pressure。", "联系 information asymmetry 和 conflicts of interest。"],
+    "分析师可能因支持投行业务获得奖金，也依赖 Enron 管理层提供 access 和 inside-style information。若批评公司，管理层可能停止沟通。此外，大型机构投资者持有 Enron 股票，分析师不愿得罪重要客户。这些利益冲突削弱了独立判断。",
+    "Analysts may have had incentives to support investment banking relationships, preserve access to Enron's management, and avoid upsetting large institutional investors. These incentives created conflicts of interest and may have reduced analysts' willingness to issue negative recommendations despite warning signs.",
+    ["financial analysts", "conflicts of interest", "investment banking", "management access", "institutional investors", "information asymmetry"]
+  ),
+  makeTutorial(
+    3,
+    "framework",
+    "Theory and falsification",
+    "(a) What is the key characteristic of a theory? (b) According to Popper, how do we determine whether a theory is truly scientific? Why do many 'theories' in the social sciences fail to conform to Popper's definition? (c) Define 'deduction' and 'induction' citing an example of each. (d) Induction has been criticised as a form of scientific method for a number of reasons. Outline the main criticisms of induction. If induction is so fallible, what role do you think it plays in the construction of useful theories?",
+    "理论和观察陈述有什么区别？理论可证伪是什么意思？为什么在社会科学和会计中应用 falsification 比较困难？",
+    ["定义 theory 的 generalisation。", "解释 falsification。", "讨论概率性理论、sampling error、Duhem effect。"],
+    "Theory 的特点是对事件或对象作 generalisation，而不是单一观察。Falsification 指能推导出某种观察结果，一旦发生就会使理论为 false。会计和社会科学中，理论常是概率性的，反例可被解释为 sampling error；资本市场测试还存在 Duhem effect，即无法确定异常价格来自信息效应还是 expected return model 错误。",
+    "A theory makes generalisations about events or objects, while an observational statement describes a specific occurrence. A falsifiable theory is one for which we can identify possible observations that would make the theory false. In social science and accounting this is difficult because theories are often probabilistic, sampling error can be used to explain inconsistent evidence, and capital market tests face the Duhem effect or joint testing problem.",
+    ["generalisation", "observational statement", "falsification", "sampling error", "Duhem effect", "joint testing problem"]
+  ),
+  makeTutorial(
+    3,
+    "framework",
+    "Hines and reality construction",
+    "What is the central argument of Hines' 'Financial Accounting: In Communicating Reality, We Construct Reality'? Numerous commentators have alleged that the use of fair value accounting for financial instruments contributed to the scale of the economic losses suffered by financial institutions and their investors. Identify the link between this argument and that expressed in the latter parts of the Hines article.",
+    "解释 Hines 关于 accountants can construct reality 的观点。它如何应用到 fair value 或一般财务报告？",
+    ["写 accounting 不只是 neutral reporting。", "说明被报告/不报告会影响 users 对 reality 的看法。", "举 goodwill、bank confidence、fair value panic。"],
+    "Hines 认为会计不只是反映现实，也会塑造现实。若某项目没有被计量和报告，使用者可能认为它不存在；一旦通过收购形成 goodwill，它又突然出现在报表中。财务报告影响投资者、债权人和消费者行为，而这些行为又改变企业真实处境。Fair value 披露也可能影响市场信心。",
+    "Hines argues that accounting is not neutral because what accountants measure and report shapes what users regard as real. If an item is not recognised, users may ignore it; if it is later recognised as goodwill, it appears to exist. Reported income and wealth can affect confidence, investor behaviour and creditor behaviour, which then affects the entity's real future. Fair value reporting can similarly influence market perceptions.",
+    ["construct reality", "neutrality", "recognition", "goodwill", "fair value", "confidence"]
+  ),
+  makeTutorial(
+    3,
+    "framework",
+    "Prescription versus prediction",
+    "Why would it not be appropriate to reject a normative theory of accounting because its prescriptions could not be confirmed through empirical observations?",
+    "Prescriptions 和 predictions 一样吗？请用 normative accounting theory 解释。",
+    ["区分 normative 和 positive。", "说明 prescribing what should happen 不等于 predicting current practice。", "用 CoCoA 或 Chambers 举例。"],
+    "Prescriptions 不是 predictions。Normative theory 规定应该如何会计处理，但不预测现实中公司一定会这样做。Chambers 的 CoCoA 主张用 exit values，是对 historical cost 局限的回应；即使当时大多数公司仍用 historical cost，也不因此推翻该 normative theory。",
+    "Prescriptions are not the same as predictions. A normative theory prescribes what should be done, but it does not predict that current practice will follow the prescription. Chambers' CoCoA theory prescribed exit values because of perceived limitations in historical cost accounting. The fact that most firms used historical cost did not invalidate the normative theory.",
+    ["prescription", "prediction", "normative theory", "positive theory", "CoCoA", "historical cost"]
+  ),
+  makeTutorial(
+    3,
+    "framework",
+    "Can theories be proved?",
+    "If an accounting researcher adopts a particular accounting theory to predict which firms will make particular accounting disclosures, how much supporting evidence must the researcher gather before he or she can claim that the theory is 'proved'? Explain your answer.",
+    "会计研究者能证明一个理论吗？请结合 falsification 和 human behaviour 讨论。",
+    ["说明 Popper/falsificationists 通常认为理论不能最终证明。", "会计研究面对 human behaviour，不可能完美解释所有情况。", "更安全用 evidence supports。"],
+    "严格来说，理论很难被最终证明。Falsificationist 认为理论只是暂时没有被推翻，未来可能有更好的理论。会计研究涉及人类行为，行为差异大，且存在 alternative explanations。因此研究通常应说 evidence supports a theory，而不是 proves it。",
+    "Accounting researchers should be cautious about claiming to prove a theory. Falsificationists argue that theories cannot be finally proved; they can only survive attempts at refutation until better theories emerge. Accounting deals with human behaviour, so perfect prediction is unlikely and alternative explanations usually exist. It is safer to say evidence supports a theory.",
+    ["prove", "support", "falsificationists", "alternative explanations", "human behaviour", "refutation"]
+  ),
+  makeTutorial(
+    3,
+    "framework",
+    "Theory and standard setting",
+    "Do we really need financial accounting theory if all we are interested in doing is developing accounting standards?",
+    "会计准则制定者需要会计理论知识吗？请解释。",
+    ["列出准则制定要回答的问题。", "联系 stakeholder effects、cost-benefit、opposition、best accounting method。", "说明 theory 帮助严谨分析。"],
+    "需要。准则制定涉及信息对不同 stakeholder 的影响、成本收益、组织是否会反对、某种处理是否最佳、是否跨国家适用等问题。回答这些问题需要 normative theory、positive theory、regulation theory 和 capital market theory 等知识。",
+    "Yes. Standard-setters need theory to assess how proposed standards affect stakeholders, whether benefits exceed costs, whether organisations will oppose the rules, whether the accounting treatment is conceptually appropriate, and whether the standard can apply across settings. Accounting theory provides the framework for analysing these issues rigorously.",
+    ["standard-setters", "cost-benefit", "stakeholders", "theoretical framework", "normative theory", "positive theory"]
+  ),
+  makeTutorial(
+    4,
+    "framework",
+    "Housemate conceptual framework",
+    "Imagine you are about to move into a new share house with three other students. (a) Develop a 'Conceptual Framework' of 3-5 'Principles of Share House Living' that you think should guide you and your housemates over the next year. (b) Was it easy to come up with your Conceptual Framework? Do you think your other three housemates would agree with it? Why/not? (c) Are there any situations that you can think of where two or more of these principles may conflict with each other?",
+    "用 housemate 例子解释 conceptual framework 是什么，以及为什么原则之间会冲突。",
+    ["先说明 framework 是共同认可的基本原则。", "用 privacy、safety、respect 举例。", "说明有时必须牺牲一个原则追求另一个。"],
+    "Conceptual framework 是一组共同认可的基本原则，用来指导具体决定。室友可能同意 privacy、safety、respect、fair sharing 等原则。但原则可能冲突，例如为确认室友安全而进入其房间，会侵犯 privacy 但保护 safety。会计框架也会遇到类似取舍。",
+    "A conceptual framework is a set of agreed underlying principles used to guide specific decisions. In the housemate example, principles may include privacy, safety, respect and fair sharing of bills. Conflicts arise when one principle must be compromised to pursue another, such as entering a housemate's room to check their safety despite privacy concerns.",
+    ["conceptual framework", "underlying principles", "consensus", "privacy", "safety", "conflict between principles"]
+  ),
+  makeTutorial(
+    4,
+    "framework",
+    "Objective and users of GPFR",
+    "Review the IASB Conceptual Framework for Financial Reporting (IASB 2018) and use it to answer the following questions: (a) What is the objective of financial reporting in the Conceptual Framework? (b) Who are the users of financial reports in the Conceptual Framework? What assumptions does the Conceptual Framework make about the knowledge/background of these users? What implications might this have? (c) What is a qualitative characteristic? How many qualitative characteristics are defined in the Conceptual Framework? Describe each, and provide an example for each. (d) Explain how the Conceptual Framework is a normative approach to accounting. Use examples drawn from the Conceptual Framework.",
+    "GPFR 的目标是什么？使用者是谁？这些使用者是否定义得太窄？",
+    ["写 objective。", "写 primary users 和 reasonable knowledge assumption。", "批判排除了 employees、regulators、public。"],
+    "GPFR 的目标是向 existing and potential investors, lenders and other creditors 提供有用信息，帮助其作出提供资源相关决策。这些用户被假设有 reasonable knowledge 并 diligently analyse information。批判是定义过窄，可能排除 employees、regulators、general public 和受企业影响的群体。",
+    "The objective of GPFR is to provide useful financial information to existing and potential investors, lenders and other creditors for decisions about providing resources to the entity. These users are assumed to have reasonable business and economic knowledge. The definition can be criticised as narrow because it excludes employees, regulators, the public and other affected groups.",
+    ["general purpose financial reporting", "primary users", "investors", "lenders", "creditors", "reasonable knowledge"]
+  ),
+  makeTutorial(
+    4,
+    "framework",
+    "Advantages and disadvantages of CF",
+    "What advantages or benefits have been advanced by standard-setters to support the development of conceptual framework projects? Do you agree that in practice such benefits will be achieved?",
+    "会计 conceptual framework 有什么优点和缺点？",
+    ["优点写 consistency、comparability、accountability、guidance、less political pressure。", "缺点写 cost、political interference、measurement avoidance、legitimising profession。", "最后说取决于观点。"],
+    "CF 可让准则更 consistent 和 logical，提高国际 comparability，让 standard-setters 更 accountable，并在无具体准则时提供 guidance。缺点是开发成本高，可能受 political interference，常回避 measurement 等争议问题，可能只是 codification of existing practice 或 legitimise profession。",
+    "Conceptual frameworks can make standards more consistent and logical, improve international comparability, increase standard-setter accountability, and provide guidance when no specific standard applies. However, they are costly, politically influenced, may avoid contentious measurement issues, may codify existing practice, and may legitimise the profession rather than produce ideal accounting.",
+    ["consistency", "comparability", "accountability", "political interference", "measurement issues", "legitimise"]
+  ),
+  makeTutorial(
+    4,
+    "framework",
+    "Lottery ticket asset",
+    "Company X purchases a lottery ticket for $1. First prize in this lottery is $80, and 100 tickets will be sold. The lottery has not yet been drawn. (a) Does the lottery ticket conform to the definition of an asset? (b) Would the lottery ticket be recognised on the balance sheet? Why / why not? (c) In what circumstances might your answer to part b change?",
+    "公司购买彩票。它是否满足 asset 定义？是否应确认？",
+    ["用 right、potential benefits、control 判断 definition。", "再用 recognition/relevance/probability 判断是否入表。", "区分 existence and recognition。"],
+    "彩票可能满足 asset definition：公司有中奖权利，该权利有 potential economic benefits，并由公司 control。但 recognition 是另一问题。单张彩票中奖概率很低，确认大额资产通常不 relevant，也可能不 faithfully representative，因此更可能 expense 或按 recoverable amount 处理。",
+    "The ticket may meet the asset definition because the company has a right, the right has potential to produce economic benefits, and the company controls it. Recognition is different. Because the probability of winning is low, recognising a large asset would usually not provide relevant or faithfully represented information. It may be expensed or recognised only at recoverable amount.",
+    ["asset definition", "right", "potential economic benefits", "control", "recognition", "relevance"]
+  ),
+  makeTutorial(
+    4,
+    "framework",
+    "User knowledge assumption",
+    "According to the IASB Framework, what level of proficiency in accounting are financial statements readers expected to possess? Do you agree with this position?",
+    "准则制定者是否应该假设财务报表使用者有合理的商业和会计知识？",
+    ["先解释 IASB assumption。", "支持：否则准则制定困难。", "批判：right-to-know 成本高，排除弱势用户。"],
+    "IASB 假设 users 有 reasonable knowledge 并 diligently analyse reports。支持理由是若不作此假设，准则制定会非常困难，也难以处理复杂经济现象。批判是非专业用户也可能有 right to know，但理解报表需要付出咨询成本，可能削弱 accountability。",
+    "The IASB assumes users have reasonable knowledge of business and economic activities and review reports diligently. This makes standard-setting more practical because standards cannot be designed for every level of knowledge. However, less sophisticated users may still have a right to know, and requiring expert advice imposes costs that may limit accountability.",
+    ["reasonable knowledge", "diligent users", "right to know", "expert advice", "accountability", "cost"]
+  ),
+  makeTutorial(
+    4,
+    "framework",
+    "Measurement issues in CF",
+    "Conceptual frameworks have yet to provide prescription in relation to measurement issues. Why do you think this is the case?",
+    "为什么 conceptual frameworks 没能对有争议的 measurement issues 给出清晰指导？",
+    ["写 measurement bases 争议。", "写 standard-setters resources 和 political support。", "写 IASB mixed attribute model。"],
+    "Measurement 争议大，因为 historical cost、fair value、replacement cost、present value 等都有优缺点，难以选一个适用于所有项目。准则制定者资源有限，也可能不愿因支持某种 measurement basis 而失去政治支持。IASB 现在更倾向 mixed attribute model，根据 qualitative characteristics 和 cost constraint 选择不同基础。",
+    "Conceptual frameworks struggle with measurement because there is deep disagreement over historical cost, fair value, replacement cost and present value. No single basis clearly works for all assets and liabilities. Standard-setters may also avoid politically contentious choices. The IASB now favours a mixed attribute approach, selecting measurement bases according to qualitative characteristics and the cost constraint.",
+    ["measurement basis", "historical cost", "fair value", "mixed attribute model", "cost constraint", "political support"]
+  ),
+  makeTutorial(
+    5,
+    "agency",
+    "Decision rights",
+    "Jensen and Meckling adopt a simplified view of the shareholder-manager relationship. Explain Fama and Jensen's view of decision rights and whether it applies only to corporations.",
+    "Jensen and Meckling 对股东-经理关系的看法较简化。解释 Fama and Jensen 的 decision rights 观点，并说明是否只适用于公司。",
+    ["定义 decision management 和 decision control。", "说明 managers/board 分工。", "指出不只 corporations。"],
+    "Fama and Jensen 将 decision rights 分为 decision management rights（initiation 和 implementation）与 decision control rights（ratification 和 monitoring）。Managers 通常负责提出和执行决策，board 或其他控制方负责批准和监督。这种安排降低 agency costs，不只适用于公司，也适用于 partnerships、governmental organisations 等。",
+    "Fama and Jensen distinguish decision management rights, involving initiation and implementation, from decision control rights, involving ratification and monitoring. Managers often hold decision management rights, while boards or control bodies ratify and monitor important decisions. This reduces agency costs and applies beyond corporations, including partnerships and government organisations.",
+    ["decision management", "decision control", "initiation", "implementation", "ratification", "monitoring"]
+  ),
+  makeTutorial(
+    5,
+    "agency",
+    "Shareholder-debtholder problems",
+    "In an existing debt agreement, what are the shareholder-debtholder agency problems, how can lenders protect themselves, and why would borrowers agree?",
+    "在债务协议中，股东-债权人代理问题是什么？债权人如何保护自己？借款人为什么同意限制？",
+    ["识别 principal/agent。", "写 risk shifting 和 default downside。", "写 covenants 和 lower cost of debt。"],
+    "Debtholders 把资金交给 firm/shareholders 后，借款方可能投资高风险项目、增加债务或支付过高股利，因为股东获得 upside，债权人承担 default downside。Lenders 可通过 covenants 限制用途、leverage、dividends 和 future debt。Borrowers 同意是因为降低 perceived risk 可带来 lower cost of debt。",
+    "Debtholders are principals and the firm or shareholders are agents. After borrowing, shareholders may prefer riskier projects because they capture the upside while debtholders bear much of the downside in default. Lenders protect themselves through covenants restricting fund use, leverage, dividends and future debt. Borrowers agree because safeguards reduce perceived risk and can lower the cost of debt.",
+    ["debtholders", "risk shifting", "default", "debt covenants", "leverage", "cost of debt"]
+  ),
+  makeTutorial(
+    5,
+    "agency",
+    "Growing manufacturing firm",
+    "Identify the agency relationships in a small manufacturing firm and those likely to arise as it expands. What costs and control mechanisms are relevant?",
+    "识别小制造企业已有和扩张后可能出现的代理关系。相关成本和控制机制是什么？",
+    ["按扩张阶段写。", "初期 employee/trade creditor。", "扩张后 debt/equity/ASX/board/specialist managers。"],
+    "初期有 owner-manager 与 employees、firm 与 trade creditors 的关系，控制机制较简单，如 supervision 和 dismissal。扩张需要 debt 或 equity finance，引入 debtholder-firm、outside shareholder-manager 等关系。上市后 separation of ownership and control 明显，需要 board、audit、debt covenants、bonus contracts、options 和 formal reporting systems 来降低 monitoring、bonding 和 residual loss。",
+    "Initially, agency relationships exist between owner-manager and employees and between the firm and trade creditors. As the firm expands, debt finance creates debtholder-firm agency problems, and equity finance creates outside shareholder-manager problems. Listing increases separation of ownership and control. Relevant controls include boards, audits, debt covenants, bonus contracts, options and formal reporting systems to reduce monitoring costs, bonding costs and residual loss.",
+    ["separation of ownership and control", "trade creditors", "outside shareholders", "board", "bonus contracts", "residual loss"]
+  ),
+  makeTutorial(
+    5,
+    "agency",
+    "Employee stock options",
+    "Explain the compensatory and risk alignment functions of employee stock options. Why may options be preferred to common stock?",
+    "解释 ESOs 的 compensation 和 risk alignment 功能。为什么 options 可能优于 common stock？",
+    ["写 managers 不 well-diversified。", "普通股加重风险集中。", "options 给 upside 不给同等 downside。"],
+    "ESOs 可以作为薪酬，也可用于 risk alignment。Managers 的财富和职业集中在本公司，通常比 diversified shareholders 更担心 total risk。普通股会进一步集中风险，使 managers 更保守。Options 给 managers upside exposure，downside 主要是 options lapse，因此鼓励接受股东偏好的风险项目。",
+    "Employee stock options can compensate managers and align risk preferences. Managers are not well diversified because their employment and wealth are tied to one firm, so they may avoid risky positive-NPV projects. Ordinary shares may worsen this concentration. Options provide upside exposure with limited downside, encouraging managers to undertake riskier projects preferred by diversified shareholders.",
+    ["employee stock options", "risk alignment", "well-diversified", "total risk", "upside exposure", "lapse"]
+  ),
+  makeTutorial(
+    5,
+    "agency",
+    "Agency relationship and costs",
+    "What is an agency relationship and what is an agency cost? How can agency costs be reduced?",
+    "什么是 agency relationship 和 agency cost？如何降低 agency costs？",
+    ["定义 principal-agent delegation。", "定义 agency costs。", "写 contracts、monitoring、bonding、incentives。"],
+    "Agency relationship 是 principal 将 decision-making authority 委托给 agent。由于个人可能追求 self-interest，会产生 agency costs，即委托决策产生的 monitoring costs、bonding costs 和 residual loss。可通过 contracts、audits、boards、bonus plans、profit sharing、shares/options 和 accounting reports 降低。",
+    "An agency relationship occurs when a principal delegates decision-making authority to an agent. Because individuals may act in self-interest, agency costs arise from this delegation, including monitoring costs, bonding costs and residual loss. They can be reduced through contracts, audits, boards, bonus plans, profit sharing, shares, options and accounting reports.",
+    ["agency relationship", "agency costs", "monitoring costs", "bonding costs", "residual loss", "self-interest"]
+  ),
+  makeTutorial(
+    5,
+    "earnings",
+    "Conservative accounting and bonus plans",
+    "If senior managers are rewarded by accounting-based bonus plans, would managers or shareholders prefer conservative accounting methods?",
+    "如果高管按 accounting-based bonus plans 获奖，经理和股东会偏好 conservative accounting methods 吗？",
+    ["定义 conservative accounting。", "经理通常反对，因为降低 bonus 和 discretion。", "股东偏好，因为减少 opportunism 和 monitoring costs。"],
+    "Conservative accounting 延迟 revenue、提前 expenses、降低 assets 和提高 liabilities。Managers 若靠 accounting-based bonuses 获利，通常反对保守会计，因为它降低 income 且限制 discretion。外部 shareholders 通常偏好保守会计，因为它减少 opportunistic earnings/assets management，提升 monitoring 效率，并可能降低资本成本。",
+    "Conservative accounting delays revenue recognition, accelerates expense recognition, and reports lower assets and higher liabilities. Managers paid through accounting-based bonuses may oppose it because it lowers income and reduces discretion. Outside shareholders may prefer it because it limits opportunistic earnings and asset management, improves monitoring and may reduce the cost of capital.",
+    ["conservative accounting", "accounting-based bonus plans", "managerial discretion", "opportunistic", "monitoring", "cost of capital"]
+  ),
+  makeTutorial(
+    6,
+    "earnings",
+    "Definition of earnings management",
+    "What is earnings management, accruals-based earnings management and real earnings management?",
+    "什么是 earnings management、accruals-based earnings management 和 real earnings management？",
+    ["先给 EM 定义。", "区分 accrual judgement 和 real transactions。", "举例。"],
+    "Earnings management 是 deliberate intervention，使 reported income 偏离 neutral GAAP application。Accruals-based EM 是操纵 accrual estimates，如 bad debts、depreciation、provisions。Real EM 是改变真实交易时点或活动，如出售资产、提前销售、削减 R&D，以影响本期 profit。",
+    "Earnings management is deliberate intervention in the reporting process to bias reported income away from a neutral application of GAAP. Accruals-based earnings management biases accrual estimates such as doubtful debts, depreciation or provisions. Real earnings management changes actual transactions or business activities, such as asset sales, sales timing or R&D cuts, to affect current profit.",
+    ["earnings management", "accruals-based", "real earnings management", "neutral application", "GAAP", "provisions"]
+  ),
+  makeTutorial(
+    6,
+    "earnings",
+    "Three PAT hypotheses",
+    "Identify and explain the essence of the three key earnings-management hypotheses raised in early positive accounting theory.",
+    "识别并解释早期 PAT 中三个 earnings management 假说的核心。",
+    ["列 bonus、debt、political cost。", "每个写 incentives。", "联系 accounting choice。"],
+    "Bonus plan hypothesis 认为 managers 会选择提高或平滑 income 的方法以增加 bonus。Debt hypothesis 认为 leverage 高或接近 covenant breach 的公司更可能采用 income-increasing accounting choices。Political cost hypothesis 认为大型或 visible firms 可能降低 reported profits 以减少 political scrutiny。",
+    "The bonus plan hypothesis predicts that managers choose accounting methods that increase or smooth income to maximise bonuses. The debt hypothesis predicts that highly leveraged firms or firms close to covenant breach adopt income-increasing methods. The political cost hypothesis predicts that large visible firms may reduce reported profits to avoid political scrutiny.",
+    ["bonus plan hypothesis", "debt hypothesis", "political cost hypothesis", "income-increasing", "income smoothing", "political scrutiny"]
+  ),
+  makeTutorial(
+    6,
+    "earnings",
+    "CEO changeover",
+    "What earnings management behaviour might you expect before and after a change in CEO of a public company?",
+    "上市公司 CEO 更替前后可能出现什么 earnings management 行为？",
+    ["旧 CEO 可能 inflate earnings。", "新 CEO 可能 take a bath。", "之后 accrual reversals 或 upward EM。"],
+    "CEO 更替前，旧 CEO 可能 inflate earnings 来保住职位或提升声誉。更替后，新 CEO 可能 take a bath，通过 write-downs 降低本期 income，把问题归咎前任。之后这些 accruals reverse，或新 CEO 主动 upward manage earnings，使未来表现更好。",
+    "Before a CEO change, the old CEO may inflate earnings to keep the job or improve reputation. After the change, the new CEO may take a bath by writing down assets and lowering current income, blaming the previous CEO. In later years, accrual reversals or upward earnings management may make performance appear stronger.",
+    ["CEO changeover", "inflate earnings", "take a bath", "write-downs", "accrual reversal", "upward earnings management"]
+  ),
+  makeTutorial(
+    6,
+    "agency",
+    "Fixed salary",
+    "Why would offering managers only a fixed salary not be in the interests of owners?",
+    "为什么只给 managers 固定工资可能不符合 owners 利益？",
+    ["联系 agency problem。", "固定工资不随 performance 变化。", "也承认 fixed salary 可减少 excessive risk-taking。"],
+    "只给固定工资可能无法充分激励 managers 提高努力、效率或 firm value，因为报酬不随 performance 变化。Managers 可能追求 job security、quiet life、prestige 或 empire building。由于 owners 不能完美观察 effort，performance-based compensation 可帮助 interests alignment。但固定工资也有稳定性，并可减少过度冒险。",
+    "A fixed salary may not align managers with owners because managers are paid the same regardless of performance. They may pursue job security, a quiet life, prestige or empire building rather than firm value. Because owners cannot perfectly observe effort, performance-based pay can improve alignment. However, fixed salary can provide stability and reduce excessive risk-taking.",
+    ["fixed salary", "performance-based compensation", "effort", "alignment", "job security", "empire building"]
+  ),
+  makeTutorial(
+    6,
+    "earnings",
+    "Conservative accounting and contracting",
+    "From a contracting perspective, why might organisations traditionally choose conservative accounting methods?",
+    "从 contracting perspective 看，为什么企业传统上可能选择 conservative accounting methods？",
+    ["写 conservatism 的效果。", "债权人需要 bad news timely recognition。", "股东也用它限制 managers。"],
+    "Conservative accounting 更早确认 losses、延迟 gains，降低 profits、net assets 和 equity。它帮助 debtholders 及时发现 deterioration，使 covenants 更有效；也限制 managers overstate earnings/assets 的 discretion。因此它降低 agency costs、提高 monitoring efficiency，并可能降低资本成本。",
+    "Conservative accounting recognises losses earlier than gains and reports lower profits, net assets and equity. It helps debtholders receive timely warning of deterioration and makes covenants more effective. It also limits managers' discretion to overstate earnings or assets. Therefore, it can reduce agency costs, improve monitoring efficiency and lower the cost of capital.",
+    ["conservative accounting", "timely loss recognition", "covenants", "managerial discretion", "agency costs", "monitoring efficiency"]
+  ),
+  makeTutorial(
+    6,
+    "earnings",
+    "Analyst forecasts and EM",
+    "Why might analyst earnings forecasts affect earnings management, and why might earnings management affect analyst forecasts?",
+    "为什么 analyst earnings forecasts 会影响 earnings management？为什么 earnings management 又会影响 forecasts？",
+    ["写 meet/beat incentives。", "写 analysts fail to detect EM。", "写 chicken-and-egg。"],
+    "Analyst forecasts 成为 managers 想 meet or beat 的 benchmark，尤其差一点达标时，managers 可能 upward manage earnings。另一方面，analysts 可能无法识别 EM，或把被管理的 current earnings 视为 persistent，从而调整 forecasts。这形成 chicken-and-egg problem。",
+    "Analyst forecasts create benchmarks that managers may try to meet or beat, especially when earnings are close to the target. Managers may therefore manage earnings upward. At the same time, analysts may fail to detect earnings management or treat managed current earnings as persistent, affecting future forecasts. This creates a chicken-and-egg problem.",
+    ["analyst forecasts", "meet or beat", "benchmark", "earnings persistence", "forecast accuracy", "chicken-and-egg problem"]
+  ),
+  makeTutorial(
+    7,
+    "regulation",
+    "Separation and regulation",
+    "Has the increasing separation of ownership and management led to more or less accounting regulation? Why?",
+    "ownership 和 management 越来越分离，会导致更多还是更少 accounting regulation？为什么？",
+    ["支持更多 regulation：外部 users 依赖 reports。", "联系 comparability 和 reliability。", "反方 free-market incentives。"],
+    "Separation of ownership and management 增加通常会提高对 regulation 的需求，因为外部 shareholders 和 creditors 无法直接观察 operations，依赖 financial reports。Regulation 可提高 reliability、comparability 和 accepted principles。但 anti-regulation 观点认为市场会惩罚低质量披露，公司有 market-based incentives 自愿提供信息。",
+    "Greater separation of ownership and management generally increases demand for accounting regulation because outside users have less direct knowledge of operations and rely on financial reports. Regulation can improve reliability, comparability and accepted principles. However, anti-regulation theorists argue that markets create incentives for firms to disclose sufficient reliable information voluntarily.",
+    ["separation of ownership and management", "accounting regulation", "comparability", "market-based incentives", "reliability", "external users"]
+  ),
+  makeTutorial(
+    7,
+    "regulation",
+    "Private interest and climate change",
+    "If regulators follow private interest theory, how likely is strong climate change regulation if business corporations oppose it?",
+    "如果 regulators 符合 private interest theory，当企业反对时，强 climate regulation 的可能性有多大？",
+    ["写 regulators self-interest。", "企业权力和 political support。", "未来世代利益分散。"],
+    "Private interest theory 假设 regulators 和 politicians 也追求 self-interest。若强 climate regulation 损害 powerful corporations，这些企业可能通过 lobbying、votes、funding 或 reappointment pressure 影响监管者。未来世代和公众利益较分散，政治力量弱。因此强监管可能性较低，除非它给 regulators 带来政治收益。",
+    "Private interest theory assumes regulators and politicians act in self-interest. If strong climate regulation harms powerful corporations, those firms may use lobbying, votes, funding or reappointment pressure to oppose it. The interests of future generations and the public may be diffuse and less politically effective. Strong regulation is therefore less likely unless it benefits regulators politically.",
+    ["private interest theory", "self-interest", "climate regulation", "lobbying", "politically effective", "reappointment"]
+  ),
+  makeTutorial(
+    7,
+    "regulation",
+    "Neutral accounting standards",
+    "Given the standard-setting process, can accounting standards be considered neutral?",
+    "考虑准则制定过程，accounting standards 能被认为是 neutral 吗？",
+    ["写 submissions 和 credibility。", "写 cost-benefit subjective。", "用 private interest/capture theory 批判。"],
+    "Accounting standards 很难完全 neutral。准则制定会收 interested parties 的 submissions，不同提交者的 credibility 和 power 不同。Standard-setters 还会主观权衡 costs and benefits。Capture theory 和 private interest theory 进一步说明规则可能受 regulated industry 或 politically effective groups 影响。",
+    "Accounting standards are difficult to regard as fully neutral. Standard-setters receive submissions from interested parties, and submissions differ in credibility and influence. Cost-benefit assessments are subjective. Capture theory and private interest theory suggest that standards may be shaped by regulated industries or politically effective groups rather than pure neutrality.",
+    ["neutrality", "standard-setting", "submissions", "credibility", "cost-benefit", "capture theory"]
+  ),
+  makeTutorial(
+    7,
+    "regulation",
+    "Audits without legal requirement",
+    "Would independent financial statement audits exist for listed companies even without regulation requiring them?",
+    "即使没有强制 regulation，上市公司还会有 independent audits 吗？",
+    ["写 contractual demand。", "审计降低 information risk 和 cost of capital。", "条件是 auditor independent。"],
+    "会有一定 voluntary demand。若 managers 被假设 self-interested，外部 shareholders 和 debtholders 会需要可信第三方提高 accounting data reliability。Audits 可降低 perceived risk 和 cost of capital。但这种机制有效的前提是 auditor 被认为真正 independent，且 statements 内容足够明确。",
+    "There would likely be a contractual demand for audits. If managers are self-interested, outside shareholders and debtholders need credible third-party assurance to improve the reliability of accounting data. Audits can reduce perceived risk and the cost of capital. However, this depends on auditors being truly independent and financial statement content being well-defined.",
+    ["independent audit", "contractual demand", "third-party assurance", "perceived risk", "cost of capital", "auditor independence"]
+  ),
+  makeTutorial(
+    7,
+    "regulation",
+    "Motivations of regulators",
+    "What assumptions are made about regulator motivations in public interest theory, capture theory and economic interest group theory?",
+    "Public interest theory、capture theory 和 economic interest group theory 对 regulators 的动机有什么假设？",
+    ["逐个定义三理论。", "比较 regulator 是否 self-interested。", "指出 capture theory 内部张力。"],
+    "Public interest theory 假设 regulators 为社会整体利益服务，只有 benefits 大于 costs 才监管。Capture theory 假设 regulation 初衷可能是公共利益，但 regulated parties 后来 capture regulator。Economic interest group theory 假设所有人包括 regulators 都追求 self-interest，regulation 服务 politically effective groups。",
+    "Public interest theory assumes regulators act for society as a whole and regulate when benefits exceed costs. Capture theory assumes regulation may begin in the public interest but is later captured by regulated parties. Economic interest group theory assumes everyone, including regulators, acts in self-interest, so regulation serves politically effective groups.",
+    ["public interest theory", "capture theory", "economic interest group theory", "regulators", "self-interest", "politically effective groups"]
+  ),
+  makeTutorial(
+    8,
+    "cmr",
+    "Share price model",
+    "Explain the theoretical model of share price and why investors care about reported earnings. Apart from earnings, what else should investors consider?",
+    "解释 share price 理论模型，为什么投资者关心 reported earnings？除了 earnings 还应关注什么？",
+    ["写 share price = PV of expected future dividends/cash flows。", "earnings helps predict future earnings/dividends/risk。", "其他信息也影响 cash flows/risk。"],
+    "理论上 share price 是 expected future dividends/cash flows 的 present value，并用反映 risk 的 discount rate 折现。Investors 关心 earnings，因为 current earnings 可帮助预测 future earnings、future dividends 和 risk。除此之外，还应关注任何会影响 future cash flows 或 discount rate 的信息，如 CSR、regulation、financing、strategy、industry news。",
+    "Theoretically, share price equals the present value of expected future dividends or cash flows discounted at a rate reflecting risk. Investors care about reported earnings because current earnings help predict future earnings, dividends and risk. Investors should also consider any information affecting future cash flows or the discount rate, including CSR, regulation, financing, strategy and industry news.",
+    ["present value", "expected future cash flows", "dividends", "discount rate", "risk", "reported earnings"]
+  ),
+  makeTutorial(
+    8,
+    "cmr",
+    "Semi-strong EMH",
+    "Briefly describe the semi-strong form of EMH. How is it different from weak and strong form efficiency?",
+    "简述 semi-strong form EMH。它和 weak/strong form efficiency 有什么区别？",
+    ["定义 informational efficiency。", "区分 information set。", "强调 publicly available information。"],
+    "Semi-strong EMH 指市场对所有 publicly available information 有效率，新公开信息会迅速且无偏地进入价格。Weak form 只包括 historical price data；strong form 包括 public and private information。会计资本市场研究通常使用 semi-strong form。",
+    "Semi-strong form EMH states that prices rapidly and unbiasedly reflect all publicly available information. Weak form efficiency concerns only historical price data. Strong form efficiency concerns both public and private information. Capital market research in accounting usually focuses on semi-strong form efficiency.",
+    ["semi-strong form EMH", "weak form", "strong form", "publicly available information", "historical price data", "private information"]
+  ),
+  makeTutorial(
+    8,
+    "cmr",
+    "Earnings and share prices",
+    "When considering the fair value of a share, what variable is directly relevant to investors? Why do we expect a relationship between accounting earnings and share prices?",
+    "考虑 share 的 fair value 时，投资者最直接关心什么变量？为什么 accounting earnings 和 share prices 有关系？",
+    ["直接变量是 expected future cash flows/dividends。", "earnings 预测 future earnings 和 dividends。", "关系强弱取决于 predictive links。"],
+    "投资者直接关心 expected future cash flows，尤其 dividends。Accounting earnings 本身不是最终目标，但 current earnings 有助于预测 future earnings；future earnings 又影响 dividends；expected dividends 折现后决定 share price。因此 earnings 和 share prices 之间通常存在关系。",
+    "The variable of direct interest is expected future cash flows, especially dividends. Accounting earnings are not the final object of valuation, but current earnings help predict future earnings, and future earnings help predict future dividends. Discounted expected dividends determine share price, so earnings and share prices are expected to be related.",
+    ["fair value", "expected future cash flows", "dividends", "current earnings", "future earnings", "predictive value"]
+  ),
+  makeTutorial(
+    8,
+    "cmr",
+    "Musk tweet",
+    "Why was Elon Musk's tweet about Tesla financing important from a capital market perspective?",
+    "从 capital market 角度看，Musk 关于 Tesla 融资的 tweet 为什么重要？",
+    ["tweet 是 alternative public information。", "可能影响 expected cash flows/risk。", "关键在 material、credible、misleading。"],
+    "Musk 的 tweet 是关于公司 financing 和 performance 的公开信息来源，可能改变 investors 对 expected future cash flows 和 risk 的判断。若信息 material 且 credible，semi-strong EMH 下股价会反应。争议在于该信息是否新、重要、真实，是否误导市场。",
+    "Musk's tweet was an alternative public source of information about Tesla's financing and prospects. It could affect investors' expectations of future cash flows and risk. If the information was material and credible, semi-strong efficient markets would incorporate it into price. The key issue was whether the information was new, material, true and not misleading.",
+    ["material information", "financing", "public information", "credible", "misleading", "future cash flows"]
+  ),
+  makeTutorial(
+    8,
+    "cmr",
+    "Volkswagen emissions",
+    "Why would information about Volkswagen's environmental performance affect its share price? Could other car manufacturers' share prices be affected?",
+    "为什么 Volkswagen 环保表现信息会影响股价？其他汽车制造商股价会受影响吗？",
+    ["负面 surprise 改变 cash flows/risk。", "罚款、诉讼、声誉、销量。", "同业可能 information transfer。"],
+    "Volkswagen 排放丑闻是 negative surprise，会影响 expected future cash flows 和 risk，例如罚款、诉讼、召回、声誉损失和销量下降。其他汽车制造商也可能受 information transfer effect 影响：若市场认为问题是行业性的，同业股价下跌；若 competitors 受益，可能上涨。",
+    "The emissions information was a negative surprise that could affect expected future cash flows and risk through fines, litigation, recalls, reputational damage and lower sales. Other car manufacturers may also be affected through the information transfer effect. Their prices may fall if investors infer an industry-wide problem, or rise if competitors benefit.",
+    ["negative surprise", "environmental performance", "expected future cash flows", "risk", "information transfer effect", "industry-wide information"]
+  ),
+  makeTutorial(
+    9,
+    "cmr",
+    "Insider information",
+    "If individuals profit from insider information, does this show that the market is inefficient?",
+    "如果有人利用 insider information 获利，是否说明市场无效？",
+    ["区分 semi-strong 和 strong。", "private info 不推翻 semi-strong。", "推翻 strong 但 strong 不现实。"],
+    "这取决于 EMH 形式。Semi-strong EMH 只要求价格反映 publicly available information；insider information 是 private information，所以 insider profits 不推翻 semi-strong efficiency。但它不符合 strong form efficiency，因为 strong form 要求价格反映所有 public and private information。",
+    "This depends on the form of EMH. Semi-strong efficiency requires prices to reflect publicly available information, not private information. Insider profits therefore do not invalidate semi-strong efficiency. They would be inconsistent with strong form efficiency, which assumes prices reflect all public and private information, but strong form efficiency is generally unrealistic.",
+    ["insider information", "semi-strong efficiency", "strong form efficiency", "private information", "publicly available information"]
+  ),
+  makeTutorial(
+    9,
+    "cmr",
+    "Information content method",
+    "Describe how tests of the information content of accounting earnings are usually conducted, why models such as CAPM are used, and whether earnings appear to have information content.",
+    "描述 earnings information content 测试如何进行，为什么使用 CAPM 等模型，以及 earnings 是否有 information content。",
+    ["写 unexpected earnings 和 abnormal returns。", "CAPM/market model 用于估计 normal returns。", "研究通常支持 unexpected earnings 与 abnormal returns 相关。"],
+    "研究通常估计 unexpected earnings 和 abnormal returns，并测试二者是否相关。需要 CAPM 或 market model 来估计没有 accounting information 时的 normal/expected return，从 actual return 中分离市场整体因素。大量研究发现 unexpected earnings 与 abnormal share price changes 显著相关，因此 earnings 有 information content。",
+    "Researchers estimate unexpected earnings and abnormal returns, then test whether they are associated. CAPM or the market model is used to estimate normal returns that would have occurred without the accounting information, filtering out market-wide movements. Prior research generally finds that unexpected earnings are associated with abnormal returns, so earnings appear to have information content.",
+    ["information content", "unexpected earnings", "abnormal returns", "CAPM", "market model", "normal returns"]
+  ),
+  makeTutorial(
+    9,
+    "cmr",
+    "No price change",
+    "Evaluate the statement: if accounting information is released and there is no apparent share price change, the information is irrelevant and should not be disclosed again.",
+    "评价：如果 accounting information 发布后股价没有明显变化，说明信息 irrelevant，以后不应披露。",
+    ["先给 semi-strong 可能解释。", "再列其他原因。", "最后说 investors 不是唯一 users。"],
+    "没有股价反应可能表示信息已被 anticipated、来自其他来源、not credible，或不影响 cash flows/risk。但也可能有 offsetting information、expected return model 错误、市场非完全有效或 volume effect。更重要的是，股价反应只反映 investors，信息可能对 regulators、employees、public 有用。因此不能据此停止披露。",
+    "No price reaction may indicate the information was anticipated, available elsewhere, not credible, or irrelevant to cash flows or risk. However, other explanations include offsetting news, errors in the expected return model, market inefficiency or volume effects. Share price studies focus on investors only, while information may be relevant to regulators, employees or the public. Therefore, no price reaction does not justify stopping disclosure.",
+    ["no price reaction", "anticipated information", "offsetting news", "volume effects", "stakeholders", "relevance"]
+  ),
+  makeTutorial(
+    9,
+    "cmr",
+    "Firm size and information content",
+    "What does it mean to say the information content of unexpected earnings is inversely associated with firm size?",
+    "unexpected earnings 的 information content 与 firm size 负相关是什么意思？",
+    ["小公司信息少，earnings surprise 大。", "大公司 analyst coverage 多，信息已进价格。", "所以小公司反应更强。"],
+    "这意味着 earnings announcements 对小公司的股价影响通常大于大公司。大公司有更多 analyst coverage、media coverage 和 alternative information sources，earnings 已更可能被 anticipated 并 impounded into price。小公司的 earnings announcement 含有更多 unexpected component。",
+    "It means earnings announcements generally have a greater share price impact for smaller firms than larger firms. Larger firms have more analyst coverage, media coverage and alternative information sources, so earnings are more likely to be anticipated and already impounded into price. Smaller firms' announcements contain more unexpected information.",
+    ["firm size", "information content", "analyst coverage", "anticipated earnings", "impounded into price", "unexpected component"]
+  ),
+  makeTutorial(
+    9,
+    "cmr",
+    "Information transfer",
+    "Would an earnings announcement by one firm affect other firms in the same industry?",
+    "一个公司的 earnings announcement 会影响同业其他公司的股价吗？",
+    ["定义 information transfer/spillover。", "解释 industry-wide information。", "方向可正可负。"],
+    "会，这叫 information transfer effect 或 spillover effect。一个公司的 earnings announcement 可能透露 demand、costs、regulation 或竞争状况等 industry-wide information。同业股价可能同向或反向反应，取决于消息表示行业整体变化还是竞争份额变化。",
+    "Yes. This is the information transfer or spillover effect. An earnings announcement may reveal industry-wide information about demand, costs, regulation or competition. Other firms' prices may move in the same or opposite direction, depending on whether the news indicates industry-wide changes or competitive shifts.",
+    ["information transfer effect", "spillover effect", "industry-wide information", "same industry", "abnormal returns"]
+  ),
+  makeTutorial(
+    9,
+    "cmr",
+    "Market has it right",
+    "If the market already has it right, what is the role of financial accounting?",
+    "如果市场已经正确估值，那么 financial accounting 的角色是什么？",
+    ["写 accounting confirms expectations。", "批判市场未必总对。", "会计也服务 contracting 和非资本市场 users。"],
+    "若市场已利用多种信息正确估值，financial accounting 的作用可能是 confirm market expectations。但市场不一定总是 right，报表仍可能提供 unexpected information。此外，capital market 不是唯一用户，会计也服务 debt contracting、monitoring、stewardship 和其他 stakeholders。",
+    "If the market has already valued securities correctly using many information sources, financial accounting may confirm market expectations. However, markets may not always be right, and financial statements may still provide unexpected information. Also, capital markets are not the only users of accounting information; accounting supports contracting, monitoring, stewardship and other stakeholders.",
+    ["market valuation", "confirm expectations", "unexpected information", "contracting", "stewardship", "capital market"]
+  ),
+  makeTutorial(
+    9,
+    "cmr",
+    "Ex ante cost of equity",
+    "What is the ex ante cost of equity capital, and when do researchers study it instead of short-term share price changes?",
+    "什么是 ex ante cost of equity capital？什么时候研究它而不是短期股价变化？",
+    ["定义 required return。", "长期 reporting quality 影响 discount rate。", "短期 event study 不适合 permanent factors。"],
+    "Ex ante cost of equity 是 equity holders 投资某股票所要求的预期回报率，反映 risk-free rate 和 risk premium。当研究对象是长期或半永久因素，如 reporting quality 或 disclosure policy，而非单次信息事件时，研究 cost of equity 比短期 abnormal returns 更合适。",
+    "The ex ante cost of equity is the required return equity investors demand to invest in a stock, reflecting the risk-free rate and risk premium. Researchers study it when the reporting attribute is permanent or semi-permanent, such as disclosure quality, rather than a one-off event that should produce a short-term abnormal return.",
+    ["ex ante cost of equity", "required return", "risk premium", "discount rate", "reporting quality", "abnormal returns"]
+  ),
+  makeTutorial(
+    9,
+    "cmr",
+    "Disclosure and cost of equity",
+    "Why might better disclosure result in a lower cost of equity capital?",
+    "为什么更好的 disclosure 可能降低 cost of equity capital？",
+    ["写降低 information risk/asymmetry。", "market for lemons/adverse selection。", "投资者要求较低 risk premium。"],
+    "Better disclosure 可降低 information asymmetry 和 information risk，使投资者更有信心。若公司披露少，投资者可能按 market for lemons 思路推断隐藏坏消息，要求更高 risk premium。高质量披露减少不确定性，因此可能降低 cost of equity。",
+    "Better disclosure can reduce information asymmetry and information risk, increasing investor confidence. If a firm discloses little, investors may suspect hidden bad news under a market-for-lemons or adverse selection argument and demand a higher risk premium. Higher-quality disclosure reduces uncertainty and can lower the cost of equity.",
+    ["better disclosure", "information asymmetry", "information risk", "market for lemons", "adverse selection", "risk premium"]
+  ),
+  makeTutorial(
+    10,
+    "csr",
+    "Stakeholders and corporate role",
+    "What is the definition of stakeholders? Compare the narrow view and stakeholder view of public corporations, and explain CSR behaviour under both views.",
+    "什么是 stakeholders？比较 public corporations 的 narrow view 和 stakeholder view，并解释两种视角下的 CSR 行为。",
+    ["定义 stakeholders。", "narrow view 用 shareholder wealth 解释 CSR。", "stakeholder view 用 responsibility/accountability 解释 CSR。"],
+    "Stakeholders 是能影响组织目标实现、或受组织目标实现影响的群体或个人。Narrow view 认为公司是 shareholders wealth accumulation 的工具，CSR 只有在有助于 profit、reputation、avoid regulation 时才合理。Stakeholder view 认为公司应对 people 和 environment 负责，CSR 是 accountability 的一部分。",
+    "Stakeholders are identifiable groups or individuals who can affect the achievement of an organisation's objectives or are affected by those objectives. The narrow view treats corporations as mechanisms for shareholder wealth accumulation, so CSR is justified when it supports profit, reputation or avoids regulation. The stakeholder view argues corporations are responsible for impacts on people and the environment, so CSR is part of accountability.",
+    ["stakeholders", "narrow view", "stakeholder view", "shareholder wealth", "CSR", "accountability"]
+  ),
+  makeTutorial(
+    10,
+    "csr",
+    "CSP-CFP link",
+    "Can existing literature confidently derive a conclusive link between corporate social performance and corporate financial performance?",
+    "现有文献能否确定 CSP 和 CFP 之间有结论性的关系？",
+    ["回答 no。", "写 mixed results/inconclusive。", "引出 endogeneity 和 competing views。"],
+    "不能。相关文献对 CSP-CFP 关系的发现并不一致，不能得出 conclusive link。混合结果可能来自 endogeneity，例如 reverse causation 和 omitted variables，也可能来自不同理论视角对 CSR-financial performance 关系的相反预测。",
+    "No. Existing literature does not provide a conclusive link between corporate social performance and corporate financial performance. Mixed results may reflect endogeneity problems such as reverse causation and omitted variables, as well as contrasting theoretical views about whether CSR helps, reflects, or harms financial performance.",
+    ["corporate social performance", "corporate financial performance", "inconclusive", "endogeneity", "reverse causation", "omitted variables"]
+  ),
+  makeTutorial(
+    10,
+    "csr",
+    "Empirical challenges in CSP-CFP",
+    "What are the major empirical challenges facing research on the CSP-CFP relation?",
+    "研究 CSP-CFP 关系面临哪些主要 empirical challenges？",
+    ["写 reverse causation。", "写 missing/omitted variables。", "写 contrasting theoretical views。"],
+    "主要挑战是 endogeneity。Reverse causation 指即使发现正相关，也不清楚是 CSP 改善 CFP，还是 CFP 好的公司更有资源做 CSP。Missing variables 指 governance、management quality、industry 等因素可能同时影响 CSP 和 CFP。此外，理论上也有 charity、investment、signaling、greenwashing 等不同解释。",
+    "The main challenge is endogeneity. Reverse causation means a positive relation may arise because strong CFP enables better CSP, rather than CSP causing CFP. Omitted variables such as governance, management quality or industry may drive both. Contrasting theories, including charity, investment, signaling and greenwashing views, also complicate interpretation.",
+    ["empirical challenges", "endogeneity", "reverse causation", "omitted variables", "causality", "mixed results"]
+  ),
+  makeTutorial(
+    10,
+    "csr",
+    "Five CSP-CFP views",
+    "Briefly explain the five existing views on the relation between CSP and CFP.",
+    "简要解释 CSP 和 CFP 关系的五种观点。",
+    ["逐一解释 charity、private interest、investment、signaling、greenwashing。", "注意 signaling 是 future performance -> CSR。"],
+    "Charity hypothesis 认为 CSR 是为社会好，不一定增加 firm value。Private interest hypothesis 认为 CSR 是 managers 以 shareholders 为代价获取 reputation/status。Investment hypothesis 认为 CSR 可产生 positive economic returns。Signaling hypothesis 认为强未来表现的公司用 CSR signal prospects。Greenwashing hypothesis 认为 CSR 只是塑造好形象以避免 regulation 或降低成本。",
+    "The charity hypothesis views CSR as beneficial for society rather than firm value. The private interest hypothesis sees CSR as managers extracting reputation or status at shareholders' expense. The investment hypothesis treats CSR as generating positive economic returns. The signaling hypothesis argues CSR signals strong future prospects. The greenwashing hypothesis sees CSR as image management to avoid regulation or reduce compliance costs.",
+    ["charity hypothesis", "private interest hypothesis", "investment hypothesis", "signaling hypothesis", "greenwashing hypothesis", "firm value"]
+  ),
+  makeTutorial(
+    10,
+    "csr",
+    "CSR and tax avoidance",
+    "What are Hoi, Wu and Zhang's main arguments and findings about CSR and tax avoidance?",
+    "Hoi, Wu and Zhang 关于 CSR 和 tax avoidance 的主要论点和发现是什么？",
+    ["定义 CSR as right course of action。", "aggressive tax avoidance unethical。", "坏 CSR 与 tax sheltering 相关。"],
+    "他们认为 CSR 是关于 right course of action 的信念，不只考虑经济结果，也考虑社会、环境等影响。Aggressive tax avoidance 被视为 unethical 和 irresponsible。因此 CSR 好的公司应较少 aggressive tax avoidance。研究发现 excessive irresponsible CSR activities 的公司更可能参与 tax sheltering。",
+    "They argue CSR reflects beliefs about the right course of action, considering social, environmental and other consequences as well as economic outcomes. Aggressive tax avoidance is viewed as unethical and irresponsible. They predict better CSR firms engage in less aggressive tax avoidance and find that firms with excessive irresponsible CSR activities are more likely to engage in tax sheltering.",
+    ["tax avoidance", "tax sheltering", "irresponsible CSR", "ethical", "right course of action", "aggressive tax avoidance"]
+  ),
+  makeTutorial(
+    10,
+    "csr",
+    "CSR disclosure and cost of equity",
+    "What is the link between CSR disclosure and the cost of equity capital?",
+    "CSR disclosure 和 cost of equity capital 有什么联系？",
+    ["CSR disclosure 提供 incremental information。", "降低 information asymmetry/uncertainty。", "只有 CSR performance 好时更可信。"],
+    "一般观点是 CSR disclosure 提供关于公司的 incremental information，降低 information asymmetry 和 uncertainty，从而降低 cost of equity capital。Dhaliwal 等发现 standalone CSR report 降低 cost of equity 主要发生在 CSR performance 好的公司，因为 disclosure 更 credible。",
+    "CSR disclosure can provide incremental information about the firm, reducing information asymmetry and uncertainty and therefore lowering the cost of equity capital. Dhaliwal et al. find that initiating a standalone CSR report reduces cost of equity mainly for firms with good CSR performance, because such reports are more credible.",
+    ["CSR disclosure", "incremental information", "information asymmetry", "uncertainty", "cost of equity capital", "credible"]
+  ),
+  makeTutorial(
+    10,
+    "csr",
+    "PMC and CSR disclosure",
+    "What are Ryou, Tsang and Wang's main arguments and findings about product market competition and CSR disclosure?",
+    "Ryou, Tsang and Wang 关于 product market competition 和 CSR disclosure 的主要论点和发现是什么？",
+    ["写 proprietary cost hypothesis。", "CSR 信息可能 competition-sensitive。", "竞争越强 disclosure 越少。"],
+    "他们将 proprietary cost hypothesis 应用于 CSR disclosure。CSR 披露可能包含 development process、technologies、future products、selling strategies 等 competition-sensitive information。产品市场竞争越激烈，披露这些信息的成本越高。研究发现 PMC 越高，standalone CSR reports 的 likelihood、frequency 和 length 越低，external assurance 和 GRI disclosure 也更少。",
+    "They apply the proprietary cost hypothesis to CSR disclosure. CSR reports may reveal competition-sensitive information about development processes, technologies, future products and selling strategies. When product market competition is intense, proprietary costs are higher. They find higher PMC reduces the likelihood, frequency and length of standalone CSR reports and reduces assured or GRI-based CSR disclosure.",
+    ["product market competition", "proprietary cost hypothesis", "competition-sensitive information", "standalone CSR reports", "external assurance", "GRI"]
+  )
+];
+
+const extraChineseQuestions = {
+  "Founder-managed firm expansion": "仔细识别一家创始人管理的私人公司在扩张、举借外部债务、雇用职业经理人并最终上市时可能出现的代理关系。可能产生哪些代理成本？可以用哪些机制降低这些成本？",
+  "Debt covenants and borrower incentives": "在现有债务协议中，股东与债权人之间可能出现什么代理问题？为什么债权人会使用基于会计数字的债务契约？为什么借款公司会自愿接受这些限制？",
+  "Employee stock options": "员工股票期权可以用来协调经理人与股东的风险偏好。为什么这种风险协调功能是必要的？为什么期权可能比普通股更合适？",
+  "Neutrality of accounting standards": "考虑到会计准则制定的政治性，会计准则能被认为是中立的吗？请使用公共利益理论、俘获理论和私人利益理论讨论。",
+  "Climate regulation and private interests": "如果监管者按照私人利益理论行动，尤其当有权势的商业公司反对时，强有力的气候变化监管出现的可能性有多大？",
+  "Audits without regulation": "即使没有法规强制要求，你是否认为上市公司仍会进行独立财务报表审计？为什么？",
+  "No share price reaction": "一家上市公司披露新的环境绩效信息，但股价似乎没有变化。请评价这是否意味着该信息不相关，因此未来不应再披露。",
+  "Musk tweet and share price": "一位 CEO 发推称公司已获得重大融资，随后股价大幅上涨。根据资本市场研究和有效市场假说，为什么这条推文对投资者重要？",
+  "Insider trading and market efficiency": "如果个人利用内幕信息交易并获得巨额收益，这是否说明市场无效？请结合有效市场假说的不同形式解释。",
+  "Information transfer effect": "同一行业中某家公司发布盈利公告，你是否预期其他同行公司的股价也会受到影响？为什么？",
+  "Earnings management definition and motives": "什么是盈余管理？解释经理人为什么可能围绕奖金计划、债务契约、政治关注或 CEO 更替进行应计基础或真实活动盈余管理。",
+  "Analyst forecasts": "为什么分析师盈利预测的存在可能影响盈余管理？为什么盈余管理又可能影响分析师预测？",
+  "Conservative accounting and contracting": "从契约视角看，为什么企业传统上可能选择报告较低利润、净资产和权益的保守会计方法？",
+  "Conceptual Framework users": "IASB 概念框架聚焦现有和潜在投资者、贷款人及其他债权人。请批判性评价这种使用者定义是否过窄。",
+  "Conceptual Framework as normative theory": "解释为什么概念框架可以被描述为一种规范性会计理论。这种框架有什么优点和局限？",
+  "Asset recognition and lottery ticket": "一家公司购买彩票。根据概念框架，该彩票是否满足资产定义？是否应在资产负债表中确认？",
+  "Why disclose CSR information": "公司为什么可能自愿披露 CSR 信息？请讨论可能的收益和成本，包括资本市场影响和专有成本。",
+  "CSP and CFP": "我们能否有把握地得出更好的企业社会绩效会导致更好的企业财务绩效？请解释理论和实证上的困难。",
+  "Narrow view versus stakeholder view": "关于公众公司的角色，请比较狭义股东观和利益相关者观。每种观点如何解释 CSR 行为？"
+};
+
+const allQuestions = [
+  ...tutorialQuestions,
+  ...questions.map((question) => ({
+    ...question,
+    source: "Extra Practice",
+    enQuestion: question.text,
+    zhQuestion: extraChineseQuestions[question.title] ?? "请根据英文题目作答。",
+    zhApproach: question.chinese,
+    zhAnswer: question.chinese.join(" "),
+    enAnswer: question.english
+  }))
+];
+
+function topicName(id) {
+  return topics.find((topic) => topic.id === id)?.name ?? id;
+}
+
+function renderPredictions() {
+  const grid = document.querySelector("#predictionGrid");
+  grid.innerHTML = topics
+    .map(
+      (topic) => `
+        <button class="prediction-card" type="button" data-jump-topic="${topic.id}">
+          <div class="prediction-top">
+            <h3>${topic.name}</h3>
+            <span class="probability">${topic.probability}</span>
+          </div>
+          <div class="bar" aria-hidden="true"><span style="width:${topic.weight}%"></span></div>
+          <p>${topic.reason}</p>
+        </button>
+      `
+    )
+    .join("");
+}
+
+function renderTopicFilters() {
+  const toolbar = document.querySelector(".toolbar");
+  const questionFilter = document.querySelector("#questionFilter");
+  topics.forEach((topic) => {
+    const button = document.createElement("button");
+    button.className = "tab-button";
+    button.dataset.topicFilter = topic.id;
+    button.type = "button";
+    button.textContent = topic.name.split(" / ")[0];
+    toolbar.appendChild(button);
+
+    const option = document.createElement("option");
+    option.value = topic.id;
+    option.textContent = topic.name;
+    questionFilter.appendChild(option);
+  });
+}
+
+function renderTopics(filter = "all") {
+  const list = document.querySelector("#topicList");
+  const visibleTopics = filter === "all" ? topics : topics.filter((topic) => topic.id === filter);
+  list.innerHTML = visibleTopics
+    .map(
+      (topic) => `
+        <article class="topic-card">
+          <div class="topic-header">
+            <div>
+              <p class="label">${topic.probability}</p>
+              <h3>${topic.name}</h3>
+            </div>
+            <span class="pill">Priority ${topic.weight}</span>
+          </div>
+          <div class="topic-body">
+            <div>
+              <p class="mini-title">中文讲解：要会写什么</p>
+              <ul>${topic.knowledge.map((item) => `<li>${item}</li>`).join("")}</ul>
+            </div>
+            <div>
+              <p class="mini-title">English keywords</p>
+              <ul>${topic.english.map((item) => `<li>${item}</li>`).join("")}</ul>
+              <p class="mini-title">Writing move</p>
+              <p>${topic.writing}</p>
+            </div>
+          </div>
+        </article>
+      `
+    )
+    .join("");
+}
+
+function questionMatches(question, filter, searchTerm) {
+  const inTopic = filter === "all" || question.topic === filter;
+  const haystack = `${question.source} ${question.title} ${question.enQuestion} ${question.zhQuestion} ${question.zhAnswer} ${question.enAnswer} ${question.vocab.join(" ")}`.toLowerCase();
+  return inTopic && haystack.includes(searchTerm.toLowerCase());
+}
+
+function renderQuestions() {
+  const filter = document.querySelector("#questionFilter").value;
+  const searchTerm = document.querySelector("#searchInput").value.trim();
+  const list = document.querySelector("#questionList");
+  const visible = allQuestions.filter((question) => questionMatches(question, filter, searchTerm));
+
+  list.innerHTML = visible
+    .map(
+      (question, index) => `
+        <article class="question-card">
+          <div class="question-meta">
+            <span class="pill">${question.source}</span>
+            <span class="pill">${topicName(question.topic)}</span>
+            <span class="pill">${question.probability}</span>
+            <span class="pill">Q${index + 1}</span>
+          </div>
+          <h3>${question.title}</h3>
+          <p class="mini-title">English question</p>
+          <p class="question-text">${question.enQuestion}</p>
+          <p class="mini-title">中文题目</p>
+          <p class="translated-question">${question.zhQuestion}</p>
+          <button class="answer-toggle" type="button" data-answer-id="question-${index}">Show answer</button>
+          <div class="answer-panel" data-panel-id="question-${index}">
+            <div class="answer-block">
+              <p class="mini-title">中文答题思路</p>
+              <ul>${question.zhApproach.map((item) => `<li>${item}</li>`).join("")}</ul>
+            </div>
+            <div class="answer-block">
+              <p class="mini-title">中文回答</p>
+              <p>${question.zhAnswer}</p>
+            </div>
+            <div class="answer-block full">
+              <p class="mini-title">English answer</p>
+              <p>${question.enAnswer}</p>
+            </div>
+            <div class="answer-block full">
+              <p class="mini-title">Must-use vocabulary</p>
+              <ul class="vocab-list">${question.vocab.map((item) => `<li>${item}</li>`).join("")}</ul>
+            </div>
+          </div>
+        </article>
+      `
+    )
+    .join("");
+}
+
+function setupEvents() {
+  document.querySelector("#predictionGrid").addEventListener("click", (event) => {
+    const card = event.target.closest("[data-jump-topic]");
+    if (!card) return;
+    const topicId = card.dataset.jumpTopic;
+    document.querySelectorAll(".tab-button").forEach((tab) => {
+      tab.classList.toggle("active", tab.dataset.topicFilter === topicId);
+    });
+    renderTopics(topicId);
+    document.querySelector("#topics").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  document.querySelector(".toolbar").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-topic-filter]");
+    if (!button) return;
+    document.querySelectorAll(".tab-button").forEach((tab) => tab.classList.remove("active"));
+    button.classList.add("active");
+    renderTopics(button.dataset.topicFilter);
+  });
+
+  document.querySelector("#questionFilter").addEventListener("change", renderQuestions);
+  document.querySelector("#searchInput").addEventListener("input", renderQuestions);
+
+  document.querySelector("#questionList").addEventListener("click", (event) => {
+    const button = event.target.closest(".answer-toggle");
+    if (!button) return;
+    const panel = document.querySelector(`[data-panel-id="${CSS.escape(button.dataset.answerId)}"]`);
+    const isOpen = panel.classList.toggle("open");
+    button.textContent = isOpen ? "Hide answer" : "Show answer";
+  });
+
+  document.querySelector("#collapseAll").addEventListener("click", () => {
+    document.querySelectorAll(".answer-panel").forEach((panel) => panel.classList.remove("open"));
+    document.querySelectorAll(".answer-toggle").forEach((button) => {
+      button.textContent = "Show answer";
+    });
+  });
+
+  document.querySelector("#drawExam").addEventListener("click", () => {
+    const shuffled = [...allQuestions].sort(() => Math.random() - 0.5).slice(0, 3);
+    document.querySelector("#examQuestions").innerHTML = shuffled
+      .map(
+        (question, index) => `
+          <article class="exam-draw">
+            <div class="question-meta">
+              <span class="pill">Exam Q${index + 1}</span>
+              <span class="pill">${question.source}</span>
+              <span class="pill">${topicName(question.topic)}</span>
+            </div>
+            <h3>${question.title}</h3>
+            <p>${question.enQuestion}</p>
+          </article>
+        `
+      )
+      .join("");
+  });
+
+  document.querySelector("#clearExam").addEventListener("click", () => {
+    document.querySelector("#examQuestions").innerHTML = "";
+  });
+}
+
+renderPredictions();
+renderTopicFilters();
+renderTopics();
+renderQuestions();
+setupEvents();
+
+</script>
+  </body>
+</html>
