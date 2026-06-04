@@ -1061,6 +1061,61 @@ const allQuestions = [
   }))
 ];
 
+const multipartAnswerFixes = {
+  "Theory and falsification": {
+    zhQuestion: "请按四个部分回答：Part (a) theory 的关键特征；Part (b) Popper 的 falsification 以及为什么社会科学理论较难满足；Part (c) deduction 和 induction 的定义与例子；Part (d) induction 的批评和它在理论建构中的作用。",
+    zhApproach: [
+      "Part (a)：theory 不是单一观察，而是对事件或对象作 generalisation，并能解释或预测现象。",
+      "Part (b)：Popper 认为科学理论必须 falsifiable；社会科学理论常是 probabilistic，而且会遇到 sampling error、alternative explanations 和 Duhem effect。",
+      "Part (c)：deduction 是从一般理论推出具体预测；induction 是从多个具体观察归纳出一般规则。",
+      "Part (d)：induction 的问题包括未来不一定像过去、观察有限、可能忽略反例；但它仍可帮助提出 hypotheses 和发现 patterns。"
+    ],
+    zhAnswer: "Part (a) Theory 的关键特征是 generalisation：它不是描述一次具体观察，而是对一类事件、行为或对象提出一般性解释。Part (b) 按 Popper，真正科学的理论必须 falsifiable，也就是能提出可能被观察证据推翻的预测。很多社会科学和会计理论较难满足这一点，因为它们通常是 probabilistic，反例可能被解释为 sampling error 或其他变量造成；资本市场研究还存在 Duhem effect / joint testing problem，即无法确定结果是理论错了，还是测试模型错了。Part (c) Deduction 是从一般理论推出具体预测，例如如果 EMH 成立，则公开信息发布后股价应快速反映。Induction 是从多个观察归纳出一般理论，例如观察很多公司披露坏消息后股价下跌，从而提出 disclosure affects share prices。Part (d) Induction 被批评为不可靠，因为有限观察不能证明普遍规律，未来不一定重复过去，而且研究者可能选择性观察。但 induction 仍有价值，因为它能帮助发现 patterns、形成 hypotheses，并为之后的 deductive testing 提供起点。",
+    enAnswer: "Part (a) The key characteristic of a theory is generalisation: it does not merely describe one observation, but explains or predicts a class of events, behaviours or objects. Part (b) For Popper, a scientific theory must be falsifiable, meaning it must generate predictions that could in principle be refuted by observation. Many social science and accounting theories struggle with this standard because they are often probabilistic, contrary evidence may be explained as sampling error or omitted variables, and capital market tests face the Duhem effect or joint testing problem. Part (c) Deduction moves from a general theory to a specific prediction; for example, if the EMH holds, prices should quickly reflect public information. Induction moves from specific observations to a general claim; for example, observing many price falls after bad-news disclosures may lead to a theory that disclosure affects share prices. Part (d) Induction is criticised because limited observations cannot prove a universal rule, the future may not resemble the past, and researchers may ignore counter-evidence. However, induction remains useful for identifying patterns, generating hypotheses and providing a starting point for later deductive testing.",
+    vocab: ["generalisation", "falsifiable", "falsification", "deduction", "induction", "probabilistic theory", "sampling error", "Duhem effect", "joint testing problem", "hypothesis"]
+  },
+  "Housemate conceptual framework": {
+    zhQuestion: "请按三个部分回答：Part (a) 为 share house 设计 3-5 条原则；Part (b) 解释制定这些原则是否容易、室友是否会同意；Part (c) 举例说明原则之间可能如何冲突。",
+    zhApproach: [
+      "Part (a)：给出 3-5 条原则，例如 privacy、safety、fair sharing、respect、cleanliness。",
+      "Part (b)：说明制定 framework 需要共识，不同人价值观和成本分担偏好可能不同。",
+      "Part (c)：写原则冲突，例如 privacy 与 safety、cleanliness 与 convenience、fair sharing 与 financial capacity。",
+      "最后联系 accounting conceptual framework：原则有指导作用，但也会遇到 trade-offs。"
+    ],
+    zhAnswer: "Part (a) 一个 share house 的 conceptual framework 可以包括 privacy、safety、respect、fair sharing of bills 和 cleanliness。它们像会计概念框架一样，是用来指导具体决策的 underlying principles。Part (b) 制定这些原则不一定容易，因为每个室友对隐私、清洁、费用分担和生活习惯的重视程度不同。大家可能同意抽象原则，但在具体应用时产生分歧。Part (c) 原则可能冲突，例如为了确认室友安全而进入其房间，会保护 safety 但侵犯 privacy；要求严格清洁可能保护 cleanliness，但牺牲 convenience；平均分摊账单可能符合 simplicity，但对经济能力较弱的室友未必 fair。这个例子说明 conceptual framework 有助于一致决策，但不能消除 judgment 和 trade-offs。",
+    enAnswer: "Part (a) A share-house conceptual framework could include privacy, safety, respect, fair sharing of bills and cleanliness. Like an accounting conceptual framework, these are underlying principles that guide specific decisions. Part (b) It may not be easy to develop the framework because housemates may value privacy, cleanliness, cost-sharing and lifestyle flexibility differently. They may agree with broad principles but disagree when applying them. Part (c) Principles can conflict. Entering a housemate's room to check on their safety may protect safety but breach privacy. Strict cleaning rules may support cleanliness but reduce convenience. Equal bill sharing may be simple but not always fair for someone with less financial capacity. This shows that a conceptual framework improves consistency but does not remove judgment or trade-offs.",
+    vocab: ["conceptual framework", "underlying principles", "privacy", "safety", "fair sharing", "consensus", "conflict between principles", "trade-off", "judgment"]
+  },
+  "Objective and users of GPFR": {
+    zhQuestion: "请按四个部分回答：Part (a) GPFR 的目标；Part (b) 使用者和使用者假设；Part (c) qualitative characteristics 的含义、数量、分类和例子；Part (d) 为什么 Conceptual Framework 是 normative approach。",
+    zhApproach: [
+      "Part (a)：写 GPFR 向 primary users 提供 useful financial information，帮助他们作出提供资源相关决策。",
+      "Part (b)：写 existing and potential investors, lenders and other creditors；他们被假设有 reasonable knowledge，并会 diligently review/analyse information；批判这种假设和使用者范围可能太窄。",
+      "Part (c)：先定义 qualitative characteristics；写 2 个 fundamental characteristics 和 4 个 enhancing characteristics，并各给一个例子。",
+      "Part (d)：写 CF 不是描述公司实际怎么做，而是规定财务报告应该达到什么目标、服务谁、信息应具备什么特征，因此是 prescriptive/normative。"
+    ],
+    zhAnswer: "Part (a) GPFR 的目标是向 existing and potential investors, lenders and other creditors 提供有用的财务信息，帮助他们作出是否向企业提供资源的决策，例如买入、持有或出售 equity/debt instruments，或提供/收回 loans。Part (b) 主要使用者是现有和潜在投资者、贷款人和其他债权人，因为他们通常不能要求企业提供 tailored reports，只能依赖 GPFR。Conceptual Framework 假设这些使用者具备 reasonable knowledge of business and economic activities，并会 diligently review and analyse information。这个假设的影响是报告可以写得相对复杂，但也可能排除 employees、regulators、general public 和受企业影响但没有专业知识的群体。Part (c) Qualitative characteristics 是让财务信息有用的质量特征。共有 6 个：两个 fundamental characteristics 是 relevance 和 faithful representation；relevance 指信息能影响决策，例如 fair value change 帮助预测 future cash flows；faithful representation 指信息 complete, neutral and free from error，例如完整披露估计假设。四个 enhancing characteristics 是 comparability、verifiability、timeliness 和 understandability；例如用一致会计政策提高 comparability，审计证据提高 verifiability，及时发布年报提高 timeliness，清晰分类和解释提高 understandability。Part (d) Conceptual Framework 是 normative approach，因为它规定 accounting should do what，而不是只描述 accounting practice actually does what。它规定 GPFR objective、primary users、qualitative characteristics、elements、recognition 和 measurement guidance，因此为准则制定提供 prescriptive guidance。",
+    enAnswer: "Part (a) The objective of general purpose financial reporting is to provide useful financial information to existing and potential investors, lenders and other creditors to help them make decisions about providing resources to the entity, such as buying, holding or selling equity and debt instruments, or providing or settling loans. Part (b) The primary users are existing and potential investors, lenders and other creditors because they often cannot demand tailored reports and must rely on GPFR. The Conceptual Framework assumes these users have reasonable knowledge of business and economic activities and review and analyse information diligently. This allows reports to contain complex information, but it may also make the user definition too narrow by excluding employees, regulators, the general public and less sophisticated affected stakeholders. Part (c) Qualitative characteristics are the qualities that make financial information useful. There are six: two fundamental qualitative characteristics and four enhancing qualitative characteristics. Relevance means information can make a difference to decisions, for example fair value information that helps predict future cash flows. Faithful representation means information is complete, neutral and free from error, for example full disclosure of estimation assumptions. Comparability helps users identify similarities and differences, for example consistent accounting policies. Verifiability means different knowledgeable observers could reach consensus, for example evidence supporting an inventory count. Timeliness means information is available before it loses decision-usefulness, for example prompt annual reporting. Understandability means information is classified and presented clearly, for example clear notes explaining accounting estimates. Part (d) The Conceptual Framework is normative because it prescribes what financial reporting should achieve, who it should serve, and what qualities useful information should have. It does not merely describe existing practice; it provides prescriptive guidance on objectives, users, qualitative characteristics, elements, recognition and measurement.",
+    vocab: ["general purpose financial reporting", "primary users", "existing and potential investors", "lenders and other creditors", "reasonable knowledge", "diligently analyse information", "qualitative characteristics", "relevance", "faithful representation", "comparability", "verifiability", "timeliness", "understandability", "normative approach", "prescriptive guidance"]
+  },
+  "Lottery ticket asset": {
+    zhQuestion: "请按三个部分回答：Part (a) lottery ticket 是否符合 asset 定义；Part (b) 是否应该确认在 balance sheet；Part (c) 与哪种 asset/measurement 概念争议相关。",
+    zhApproach: [
+      "Part (a)：按 asset 定义写 present economic resource controlled by entity as a result of past events。",
+      "Part (b)：区分满足 asset definition 和 recognition；考虑 probability/expected value、materiality、faithful representation、cost-benefit。",
+      "Part (c)：联系 recognition、measurement uncertainty、expected value、fair value/current value 与 prudence。"
+    ],
+    zhAnswer: "Part (a) Lottery ticket 很可能符合 asset 定义。公司因购买 ticket 这一 past event 控制了一项 right，即参与抽奖并可能获得 cash prize；这个 right 是 economic resource，因为它有产生 economic benefits 的潜力。即使中奖概率低，也不代表没有 economic resource。Part (b) 是否确认在 balance sheet 要看 recognition criteria。票价只有 $1，expected value 可能是 $0.80（$80 x 1/100），金额很小，通常 immaterial；同时结果不确定，确认可能不提供足够有用信息。因此实务上可能费用化或不单独确认。Part (c) 这题体现了 asset definition 与 recognition/measurement 的区别，也体现 measurement uncertainty、probability、expected value 和 cost-benefit constraint。Conceptual Framework 下，符合 asset 定义不必然意味着一定确认，还要看信息是否 relevant、faithfully represented，以及成本是否超过收益。",
+    enAnswer: "Part (a) The lottery ticket likely meets the definition of an asset. As a result of the past event of purchasing the ticket, the company controls a right to participate in the draw and potentially receive a cash prize. That right is an economic resource because it has the potential to produce economic benefits, even if the probability of winning is low. Part (b) Recognition on the balance sheet is a separate issue. The ticket costs only $1 and its expected value may be $0.80 ($80 multiplied by 1/100), so it is likely immaterial. There is also uncertainty, and separate recognition may not provide very useful information. In practice it may be expensed or not separately recognised. Part (c) The question illustrates the distinction between asset definition and recognition/measurement. It also raises measurement uncertainty, probability, expected value and the cost-benefit constraint. Under the Conceptual Framework, satisfying the asset definition does not automatically mean recognition is required; the information must also be relevant and faithfully represented, and the benefits must justify the costs.",
+    vocab: ["asset definition", "economic resource", "control", "past event", "recognition", "measurement uncertainty", "expected value", "materiality", "cost-benefit constraint", "faithful representation"]
+  }
+};
+
+allQuestions.forEach((question) => {
+  const fix = multipartAnswerFixes[question.title];
+  if (fix) Object.assign(question, fix);
+});
+
 function topicName(id) {
   return topics.find((topic) => topic.id === id)?.name ?? id;
 }
