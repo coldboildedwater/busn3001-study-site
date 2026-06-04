@@ -22,7 +22,7 @@ const esc = (value) =>
   })[ch]);
 
 const label = {
-  title: "BUSN3001 \u590d\u4e60\u77e5\u8bc6\u70b9\u548c\u8bba\u8ff0\u9898",
+  title: "BUSN7005 \u590d\u4e60\u77e5\u8bc6\u70b9\u548c\u8bba\u8ff0\u9898",
   description:
     "\u8fd9\u4e2a\u7248\u672c\u4e0d\u4f9d\u8d56 JavaScript\u3002\u624b\u673a\u6d4f\u89c8\u5668\u3001GitHub Pages\u3001Gemini \u6216\u666e\u901a\u6587\u4ef6\u9884\u89c8\u91cc\uff0c\u90fd\u5e94\u8be5\u80fd\u76f4\u63a5\u770b\u5230\u77e5\u8bc6\u70b9\u548c\u9898\u76ee\u5185\u5bb9\u3002",
   quickNav: "\u5feb\u901f\u76ee\u5f55",
@@ -100,7 +100,7 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BUSN3001 Study Site</title>
+<title>BUSN7005 Study Site</title>
 <style>
 ${css}
 body { background: #f7f8fb; }
