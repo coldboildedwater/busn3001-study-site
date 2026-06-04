@@ -539,11 +539,16 @@ html { scroll-padding-top: 18px; }
 .quick-nav details { border-top: 1px solid var(--line); padding: 10px 0; }
 .quick-nav details:first-of-type { border-top: 0; }
 .quick-nav summary { cursor: pointer; font-weight: 800; color: var(--accent-2); }
+.quick-nav summary span { float: right; color: var(--muted); font-size: 12px; }
+.quick-nav h3 { margin: 12px 0 6px; color: var(--accent); font-size: 12px; text-transform: uppercase; }
 .quick-nav ol { margin: 10px 0 0; padding-left: 20px; }
 .quick-nav li { margin: 0 0 8px; font-size: 14px; line-height: 1.35; }
 .quick-nav a { color: var(--ink); text-decoration: none; }
 .quick-nav a:hover { color: var(--accent); text-decoration: underline; }
 .quick-nav a.is-active { color: #fff; background: var(--accent); border-radius: 6px; display: block; margin-left: -6px; padding: 4px 6px; text-decoration: none; }
+.jump-label { display: block; margin: 0 0 6px; color: var(--accent-2); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.jump-select { width: 100%; min-width: 0; margin: 0 0 12px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); font: inherit; font-size: 14px; }
+.question-groups > details { padding-left: 0; }
 .static-card { margin: 18px 0; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: #fff; box-shadow: 0 8px 28px rgba(24,32,44,.05); scroll-margin-top: 18px; }
 .static-card h2 { font-size: 25px; display: flex; justify-content: space-between; gap: 12px; }
 .static-card h2 span { color: var(--accent-2); font-size: 18px; white-space: nowrap; }
@@ -553,6 +558,11 @@ html { scroll-padding-top: 18px; }
 .index-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0; list-style: none; }
 .index-list a { display: block; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: #fff; text-decoration: none; }
 .index-list a:hover { border-color: var(--accent); color: var(--accent); }
+.static-index-group { margin: 18px 0; }
+.static-index-group h3 { margin: 18px 0 10px; color: var(--accent); font-size: 15px; text-transform: uppercase; }
+.static-index-group details { margin: 10px 0; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fbfcfe; }
+.static-index-group summary { cursor: pointer; color: var(--accent-2); font-weight: 800; }
+.static-index-group summary span { float: right; color: var(--muted); font-size: 13px; }
 @media (max-width: 900px) {
   html { scroll-padding-top: 150px; }
   .page-layout { display: block; width: min(1000px, calc(100% - 24px)); }
@@ -568,6 +578,80 @@ html { scroll-padding-top: 18px; }
 
 <aside class="quick-nav" aria-label="快速目录">
   <h2>快速目录</h2>
+  <label class="jump-label" for="questionJump">直接跳到题目</label>
+  <select id="questionJump" class="jump-select">
+    <option value="">直接跳到题目</option>
+    <option value="q-1">Q1. Enron and SPEs - Week 2 Tutorial</option>
+<option value="q-2">Q2. Mechanical standards and auditing - Week 2 Tutorial</option>
+<option value="q-3">Q3. Analysts and Enron - Week 2 Tutorial</option>
+<option value="q-4">Q4. Theory and falsification - Week 3 Tutorial</option>
+<option value="q-5">Q5. Hines and reality construction - Week 3 Tutorial</option>
+<option value="q-6">Q6. Prescription versus prediction - Week 3 Tutorial</option>
+<option value="q-7">Q7. Can theories be proved? - Week 3 Tutorial</option>
+<option value="q-8">Q8. Theory and standard setting - Week 3 Tutorial</option>
+<option value="q-9">Q9. Housemate conceptual framework - Week 4 Tutorial</option>
+<option value="q-10">Q10. Objective and users of GPFR - Week 4 Tutorial</option>
+<option value="q-11">Q11. Advantages and disadvantages of CF - Week 4 Tutorial</option>
+<option value="q-12">Q12. Lottery ticket asset - Week 4 Tutorial</option>
+<option value="q-13">Q13. User knowledge assumption - Week 4 Tutorial</option>
+<option value="q-14">Q14. Measurement issues in CF - Week 4 Tutorial</option>
+<option value="q-15">Q15. Decision rights - Week 5 Tutorial</option>
+<option value="q-16">Q16. Shareholder-debtholder problems - Week 5 Tutorial</option>
+<option value="q-17">Q17. Growing manufacturing firm - Week 5 Tutorial</option>
+<option value="q-18">Q18. Employee stock options - Week 5 Tutorial</option>
+<option value="q-19">Q19. Agency relationship and costs - Week 5 Tutorial</option>
+<option value="q-20">Q20. Conservative accounting and bonus plans - Week 5 Tutorial</option>
+<option value="q-21">Q21. Definition of earnings management - Week 6 Tutorial</option>
+<option value="q-22">Q22. Three PAT hypotheses - Week 6 Tutorial</option>
+<option value="q-23">Q23. CEO changeover - Week 6 Tutorial</option>
+<option value="q-24">Q24. Fixed salary - Week 6 Tutorial</option>
+<option value="q-25">Q25. Conservative accounting and contracting - Week 6 Tutorial</option>
+<option value="q-26">Q26. Analyst forecasts and EM - Week 6 Tutorial</option>
+<option value="q-27">Q27. Separation and regulation - Week 7 Tutorial</option>
+<option value="q-28">Q28. Private interest and climate change - Week 7 Tutorial</option>
+<option value="q-29">Q29. Neutral accounting standards - Week 7 Tutorial</option>
+<option value="q-30">Q30. Audits without legal requirement - Week 7 Tutorial</option>
+<option value="q-31">Q31. Motivations of regulators - Week 7 Tutorial</option>
+<option value="q-32">Q32. Share price model - Week 8 Tutorial</option>
+<option value="q-33">Q33. Semi-strong EMH - Week 8 Tutorial</option>
+<option value="q-34">Q34. Earnings and share prices - Week 8 Tutorial</option>
+<option value="q-35">Q35. Musk tweet - Week 8 Tutorial</option>
+<option value="q-36">Q36. Volkswagen emissions - Week 8 Tutorial</option>
+<option value="q-37">Q37. Insider information - Week 9 Tutorial</option>
+<option value="q-38">Q38. Information content method - Week 9 Tutorial</option>
+<option value="q-39">Q39. No price change - Week 9 Tutorial</option>
+<option value="q-40">Q40. Firm size and information content - Week 9 Tutorial</option>
+<option value="q-41">Q41. Information transfer - Week 9 Tutorial</option>
+<option value="q-42">Q42. Market has it right - Week 9 Tutorial</option>
+<option value="q-43">Q43. Ex ante cost of equity - Week 9 Tutorial</option>
+<option value="q-44">Q44. Disclosure and cost of equity - Week 9 Tutorial</option>
+<option value="q-45">Q45. Stakeholders and corporate role - Week 10 Tutorial</option>
+<option value="q-46">Q46. CSP-CFP link - Week 10 Tutorial</option>
+<option value="q-47">Q47. Empirical challenges in CSP-CFP - Week 10 Tutorial</option>
+<option value="q-48">Q48. Five CSP-CFP views - Week 10 Tutorial</option>
+<option value="q-49">Q49. CSR and tax avoidance - Week 10 Tutorial</option>
+<option value="q-50">Q50. CSR disclosure and cost of equity - Week 10 Tutorial</option>
+<option value="q-51">Q51. PMC and CSR disclosure - Week 10 Tutorial</option>
+<option value="q-52">Q52. Founder-managed firm expansion - Extra Practice</option>
+<option value="q-53">Q53. Debt covenants and borrower incentives - Extra Practice</option>
+<option value="q-54">Q54. Employee stock options - Extra Practice</option>
+<option value="q-55">Q55. Neutrality of accounting standards - Extra Practice</option>
+<option value="q-56">Q56. Climate regulation and private interests - Extra Practice</option>
+<option value="q-57">Q57. Audits without regulation - Extra Practice</option>
+<option value="q-58">Q58. No share price reaction - Extra Practice</option>
+<option value="q-59">Q59. Musk tweet and share price - Extra Practice</option>
+<option value="q-60">Q60. Insider trading and market efficiency - Extra Practice</option>
+<option value="q-61">Q61. Information transfer effect - Extra Practice</option>
+<option value="q-62">Q62. Earnings management definition and motives - Extra Practice</option>
+<option value="q-63">Q63. Analyst forecasts - Extra Practice</option>
+<option value="q-64">Q64. Conservative accounting and contracting - Extra Practice</option>
+<option value="q-65">Q65. Conceptual Framework users - Extra Practice</option>
+<option value="q-66">Q66. Conceptual Framework as normative theory - Extra Practice</option>
+<option value="q-67">Q67. Asset recognition and lottery ticket - Extra Practice</option>
+<option value="q-68">Q68. Why disclose CSR information - Extra Practice</option>
+<option value="q-69">Q69. CSP and CFP - Extra Practice</option>
+<option value="q-70">Q70. Narrow view versus stakeholder view - Extra Practice</option>
+  </select>
   <details open>
     <summary>知识点</summary>
     <ol><li><a data-nav-link href="#topic-agency">Agency theory / PAT contracting</a></li>
@@ -579,58 +663,100 @@ html { scroll-padding-top: 18px; }
   </details>
   <details>
     <summary>题目</summary>
-    <ol><li><a data-nav-link href="#q-1">Q1. Enron and SPEs</a></li>
+    
+  <div class="question-groups">
+    <h3>Tutorial Questions</h3>
+    
+      <details open>
+        <summary>Week 2 Tutorial <span>3</span></summary>
+        <ol><li><a data-nav-link href="#q-1">Q1. Enron and SPEs</a></li>
 <li><a data-nav-link href="#q-2">Q2. Mechanical standards and auditing</a></li>
-<li><a data-nav-link href="#q-3">Q3. Analysts and Enron</a></li>
-<li><a data-nav-link href="#q-4">Q4. Theory and falsification</a></li>
+<li><a data-nav-link href="#q-3">Q3. Analysts and Enron</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 3 Tutorial <span>5</span></summary>
+        <ol><li><a data-nav-link href="#q-4">Q4. Theory and falsification</a></li>
 <li><a data-nav-link href="#q-5">Q5. Hines and reality construction</a></li>
 <li><a data-nav-link href="#q-6">Q6. Prescription versus prediction</a></li>
 <li><a data-nav-link href="#q-7">Q7. Can theories be proved?</a></li>
-<li><a data-nav-link href="#q-8">Q8. Theory and standard setting</a></li>
-<li><a data-nav-link href="#q-9">Q9. Housemate conceptual framework</a></li>
+<li><a data-nav-link href="#q-8">Q8. Theory and standard setting</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 4 Tutorial <span>6</span></summary>
+        <ol><li><a data-nav-link href="#q-9">Q9. Housemate conceptual framework</a></li>
 <li><a data-nav-link href="#q-10">Q10. Objective and users of GPFR</a></li>
 <li><a data-nav-link href="#q-11">Q11. Advantages and disadvantages of CF</a></li>
 <li><a data-nav-link href="#q-12">Q12. Lottery ticket asset</a></li>
 <li><a data-nav-link href="#q-13">Q13. User knowledge assumption</a></li>
-<li><a data-nav-link href="#q-14">Q14. Measurement issues in CF</a></li>
-<li><a data-nav-link href="#q-15">Q15. Decision rights</a></li>
+<li><a data-nav-link href="#q-14">Q14. Measurement issues in CF</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 5 Tutorial <span>6</span></summary>
+        <ol><li><a data-nav-link href="#q-15">Q15. Decision rights</a></li>
 <li><a data-nav-link href="#q-16">Q16. Shareholder-debtholder problems</a></li>
 <li><a data-nav-link href="#q-17">Q17. Growing manufacturing firm</a></li>
 <li><a data-nav-link href="#q-18">Q18. Employee stock options</a></li>
 <li><a data-nav-link href="#q-19">Q19. Agency relationship and costs</a></li>
-<li><a data-nav-link href="#q-20">Q20. Conservative accounting and bonus plans</a></li>
-<li><a data-nav-link href="#q-21">Q21. Definition of earnings management</a></li>
+<li><a data-nav-link href="#q-20">Q20. Conservative accounting and bonus plans</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 6 Tutorial <span>6</span></summary>
+        <ol><li><a data-nav-link href="#q-21">Q21. Definition of earnings management</a></li>
 <li><a data-nav-link href="#q-22">Q22. Three PAT hypotheses</a></li>
 <li><a data-nav-link href="#q-23">Q23. CEO changeover</a></li>
 <li><a data-nav-link href="#q-24">Q24. Fixed salary</a></li>
 <li><a data-nav-link href="#q-25">Q25. Conservative accounting and contracting</a></li>
-<li><a data-nav-link href="#q-26">Q26. Analyst forecasts and EM</a></li>
-<li><a data-nav-link href="#q-27">Q27. Separation and regulation</a></li>
+<li><a data-nav-link href="#q-26">Q26. Analyst forecasts and EM</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 7 Tutorial <span>5</span></summary>
+        <ol><li><a data-nav-link href="#q-27">Q27. Separation and regulation</a></li>
 <li><a data-nav-link href="#q-28">Q28. Private interest and climate change</a></li>
 <li><a data-nav-link href="#q-29">Q29. Neutral accounting standards</a></li>
 <li><a data-nav-link href="#q-30">Q30. Audits without legal requirement</a></li>
-<li><a data-nav-link href="#q-31">Q31. Motivations of regulators</a></li>
-<li><a data-nav-link href="#q-32">Q32. Share price model</a></li>
+<li><a data-nav-link href="#q-31">Q31. Motivations of regulators</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 8 Tutorial <span>5</span></summary>
+        <ol><li><a data-nav-link href="#q-32">Q32. Share price model</a></li>
 <li><a data-nav-link href="#q-33">Q33. Semi-strong EMH</a></li>
 <li><a data-nav-link href="#q-34">Q34. Earnings and share prices</a></li>
 <li><a data-nav-link href="#q-35">Q35. Musk tweet</a></li>
-<li><a data-nav-link href="#q-36">Q36. Volkswagen emissions</a></li>
-<li><a data-nav-link href="#q-37">Q37. Insider information</a></li>
+<li><a data-nav-link href="#q-36">Q36. Volkswagen emissions</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 9 Tutorial <span>8</span></summary>
+        <ol><li><a data-nav-link href="#q-37">Q37. Insider information</a></li>
 <li><a data-nav-link href="#q-38">Q38. Information content method</a></li>
 <li><a data-nav-link href="#q-39">Q39. No price change</a></li>
 <li><a data-nav-link href="#q-40">Q40. Firm size and information content</a></li>
 <li><a data-nav-link href="#q-41">Q41. Information transfer</a></li>
 <li><a data-nav-link href="#q-42">Q42. Market has it right</a></li>
 <li><a data-nav-link href="#q-43">Q43. Ex ante cost of equity</a></li>
-<li><a data-nav-link href="#q-44">Q44. Disclosure and cost of equity</a></li>
-<li><a data-nav-link href="#q-45">Q45. Stakeholders and corporate role</a></li>
+<li><a data-nav-link href="#q-44">Q44. Disclosure and cost of equity</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 10 Tutorial <span>7</span></summary>
+        <ol><li><a data-nav-link href="#q-45">Q45. Stakeholders and corporate role</a></li>
 <li><a data-nav-link href="#q-46">Q46. CSP-CFP link</a></li>
 <li><a data-nav-link href="#q-47">Q47. Empirical challenges in CSP-CFP</a></li>
 <li><a data-nav-link href="#q-48">Q48. Five CSP-CFP views</a></li>
 <li><a data-nav-link href="#q-49">Q49. CSR and tax avoidance</a></li>
 <li><a data-nav-link href="#q-50">Q50. CSR disclosure and cost of equity</a></li>
-<li><a data-nav-link href="#q-51">Q51. PMC and CSR disclosure</a></li>
-<li><a data-nav-link href="#q-52">Q52. Founder-managed firm expansion</a></li>
+<li><a data-nav-link href="#q-51">Q51. PMC and CSR disclosure</a></li></ol>
+      </details>
+    <h3>Extra Practice</h3>
+    <details>
+      <summary>Extra Practice <span>19</span></summary>
+      <ol><li><a data-nav-link href="#q-52">Q52. Founder-managed firm expansion</a></li>
 <li><a data-nav-link href="#q-53">Q53. Debt covenants and borrower incentives</a></li>
 <li><a data-nav-link href="#q-54">Q54. Employee stock options</a></li>
 <li><a data-nav-link href="#q-55">Q55. Neutrality of accounting standards</a></li>
@@ -649,6 +775,8 @@ html { scroll-padding-top: 18px; }
 <li><a data-nav-link href="#q-68">Q68. Why disclose CSR information</a></li>
 <li><a data-nav-link href="#q-69">Q69. CSP and CFP</a></li>
 <li><a data-nav-link href="#q-70">Q70. Narrow view versus stakeholder view</a></li></ol>
+    </details>
+  </div>
   </details>
 </aside>
 <main class="static-shell">
@@ -794,58 +922,101 @@ html { scroll-padding-top: 18px; }
   </section>
 <section class="static-card">
 <h2>题目目录</h2>
-<ul class="index-list"><li><a href="#q-1">Q1. Enron and SPEs</a></li>
+<div class="static-index-group">
+
+  <div class="question-groups">
+    <h3>Tutorial Questions</h3>
+    
+      <details open>
+        <summary>Week 2 Tutorial <span>3</span></summary>
+        <ol><li><a href="#q-1">Q1. Enron and SPEs</a></li>
 <li><a href="#q-2">Q2. Mechanical standards and auditing</a></li>
-<li><a href="#q-3">Q3. Analysts and Enron</a></li>
-<li><a href="#q-4">Q4. Theory and falsification</a></li>
+<li><a href="#q-3">Q3. Analysts and Enron</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 3 Tutorial <span>5</span></summary>
+        <ol><li><a href="#q-4">Q4. Theory and falsification</a></li>
 <li><a href="#q-5">Q5. Hines and reality construction</a></li>
 <li><a href="#q-6">Q6. Prescription versus prediction</a></li>
 <li><a href="#q-7">Q7. Can theories be proved?</a></li>
-<li><a href="#q-8">Q8. Theory and standard setting</a></li>
-<li><a href="#q-9">Q9. Housemate conceptual framework</a></li>
+<li><a href="#q-8">Q8. Theory and standard setting</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 4 Tutorial <span>6</span></summary>
+        <ol><li><a href="#q-9">Q9. Housemate conceptual framework</a></li>
 <li><a href="#q-10">Q10. Objective and users of GPFR</a></li>
 <li><a href="#q-11">Q11. Advantages and disadvantages of CF</a></li>
 <li><a href="#q-12">Q12. Lottery ticket asset</a></li>
 <li><a href="#q-13">Q13. User knowledge assumption</a></li>
-<li><a href="#q-14">Q14. Measurement issues in CF</a></li>
-<li><a href="#q-15">Q15. Decision rights</a></li>
+<li><a href="#q-14">Q14. Measurement issues in CF</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 5 Tutorial <span>6</span></summary>
+        <ol><li><a href="#q-15">Q15. Decision rights</a></li>
 <li><a href="#q-16">Q16. Shareholder-debtholder problems</a></li>
 <li><a href="#q-17">Q17. Growing manufacturing firm</a></li>
 <li><a href="#q-18">Q18. Employee stock options</a></li>
 <li><a href="#q-19">Q19. Agency relationship and costs</a></li>
-<li><a href="#q-20">Q20. Conservative accounting and bonus plans</a></li>
-<li><a href="#q-21">Q21. Definition of earnings management</a></li>
+<li><a href="#q-20">Q20. Conservative accounting and bonus plans</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 6 Tutorial <span>6</span></summary>
+        <ol><li><a href="#q-21">Q21. Definition of earnings management</a></li>
 <li><a href="#q-22">Q22. Three PAT hypotheses</a></li>
 <li><a href="#q-23">Q23. CEO changeover</a></li>
 <li><a href="#q-24">Q24. Fixed salary</a></li>
 <li><a href="#q-25">Q25. Conservative accounting and contracting</a></li>
-<li><a href="#q-26">Q26. Analyst forecasts and EM</a></li>
-<li><a href="#q-27">Q27. Separation and regulation</a></li>
+<li><a href="#q-26">Q26. Analyst forecasts and EM</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 7 Tutorial <span>5</span></summary>
+        <ol><li><a href="#q-27">Q27. Separation and regulation</a></li>
 <li><a href="#q-28">Q28. Private interest and climate change</a></li>
 <li><a href="#q-29">Q29. Neutral accounting standards</a></li>
 <li><a href="#q-30">Q30. Audits without legal requirement</a></li>
-<li><a href="#q-31">Q31. Motivations of regulators</a></li>
-<li><a href="#q-32">Q32. Share price model</a></li>
+<li><a href="#q-31">Q31. Motivations of regulators</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 8 Tutorial <span>5</span></summary>
+        <ol><li><a href="#q-32">Q32. Share price model</a></li>
 <li><a href="#q-33">Q33. Semi-strong EMH</a></li>
 <li><a href="#q-34">Q34. Earnings and share prices</a></li>
 <li><a href="#q-35">Q35. Musk tweet</a></li>
-<li><a href="#q-36">Q36. Volkswagen emissions</a></li>
-<li><a href="#q-37">Q37. Insider information</a></li>
+<li><a href="#q-36">Q36. Volkswagen emissions</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 9 Tutorial <span>8</span></summary>
+        <ol><li><a href="#q-37">Q37. Insider information</a></li>
 <li><a href="#q-38">Q38. Information content method</a></li>
 <li><a href="#q-39">Q39. No price change</a></li>
 <li><a href="#q-40">Q40. Firm size and information content</a></li>
 <li><a href="#q-41">Q41. Information transfer</a></li>
 <li><a href="#q-42">Q42. Market has it right</a></li>
 <li><a href="#q-43">Q43. Ex ante cost of equity</a></li>
-<li><a href="#q-44">Q44. Disclosure and cost of equity</a></li>
-<li><a href="#q-45">Q45. Stakeholders and corporate role</a></li>
+<li><a href="#q-44">Q44. Disclosure and cost of equity</a></li></ol>
+      </details>
+
+      <details >
+        <summary>Week 10 Tutorial <span>7</span></summary>
+        <ol><li><a href="#q-45">Q45. Stakeholders and corporate role</a></li>
 <li><a href="#q-46">Q46. CSP-CFP link</a></li>
 <li><a href="#q-47">Q47. Empirical challenges in CSP-CFP</a></li>
 <li><a href="#q-48">Q48. Five CSP-CFP views</a></li>
 <li><a href="#q-49">Q49. CSR and tax avoidance</a></li>
 <li><a href="#q-50">Q50. CSR disclosure and cost of equity</a></li>
-<li><a href="#q-51">Q51. PMC and CSR disclosure</a></li>
-<li><a href="#q-52">Q52. Founder-managed firm expansion</a></li>
+<li><a href="#q-51">Q51. PMC and CSR disclosure</a></li></ol>
+      </details>
+    <h3>Extra Practice</h3>
+    <details>
+      <summary>Extra Practice <span>19</span></summary>
+      <ol><li><a href="#q-52">Q52. Founder-managed firm expansion</a></li>
 <li><a href="#q-53">Q53. Debt covenants and borrower incentives</a></li>
 <li><a href="#q-54">Q54. Employee stock options</a></li>
 <li><a href="#q-55">Q55. Neutrality of accounting standards</a></li>
@@ -863,7 +1034,10 @@ html { scroll-padding-top: 18px; }
 <li><a href="#q-67">Q67. Asset recognition and lottery ticket</a></li>
 <li><a href="#q-68">Q68. Why disclose CSR information</a></li>
 <li><a href="#q-69">Q69. CSP and CFP</a></li>
-<li><a href="#q-70">Q70. Narrow view versus stakeholder view</a></li></ul>
+<li><a href="#q-70">Q70. Narrow view versus stakeholder view</a></li></ol>
+    </details>
+  </div>
+</div>
 </section>
 
   <section class="static-card question" id="q-1">
@@ -2646,7 +2820,10 @@ html { scroll-padding-top: 18px; }
     activeId = id;
     links.forEach((link) => link.classList.toggle("is-active", linkById.get(id) === link));
     const activeLink = linkById.get(id);
-    if (activeLink) activeLink.scrollIntoView({ block: "nearest", inline: "nearest" });
+    if (activeLink) {
+      activeLink.closest("details")?.setAttribute("open", "");
+      activeLink.scrollIntoView({ block: "nearest", inline: "nearest" });
+    }
   };
 
   if ("IntersectionObserver" in window) {
@@ -2663,6 +2840,12 @@ html { scroll-padding-top: 18px; }
   }
 
   links.forEach((link) => link.addEventListener("click", () => setActive(decodeURIComponent(link.hash.slice(1)))));
+  document.querySelector("#questionJump")?.addEventListener("change", (event) => {
+    const id = event.target.value;
+    if (!id) return;
+    document.querySelector("#" + CSS.escape(id))?.scrollIntoView({ block: "start" });
+    setActive(id);
+  });
 })();
 </script>
 </body>

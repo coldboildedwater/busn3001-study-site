@@ -28,6 +28,9 @@ const label = {
   quickNav: "\u5feb\u901f\u76ee\u5f55",
   topics: "\u77e5\u8bc6\u70b9",
   questions: "\u9898\u76ee",
+  jumpToQuestion: "\u76f4\u63a5\u8df3\u5230\u9898\u76ee",
+  tutorialQuestions: "Tutorial Questions",
+  extraPractice: "Extra Practice",
   topicIndex: "\u77e5\u8bc6\u70b9\u76ee\u5f55",
   knowledge: "\u4e2d\u6587\u8bb2\u89e3\uff1a\u8981\u4f1a\u5199\u4ec0\u4e48",
   questionIndex: "\u9898\u76ee\u76ee\u5f55",
@@ -38,10 +41,56 @@ const label = {
 };
 
 const topicName = (id) => topics.find((topic) => topic.id === id)?.name || id;
+const questionItems = allQuestions.map((question, index) => ({ question, index }));
+
+const tutorialGroups = questionItems.reduce((groups, item) => {
+  const match = item.question.source.match(/^Week\s+(\d+)\s+Tutorial$/);
+  if (!match) return groups;
+  const key = `Week ${match[1]} Tutorial`;
+  if (!groups.has(key)) groups.set(key, []);
+  groups.get(key).push(item);
+  return groups;
+}, new Map());
+
+const extraPracticeItems = questionItems.filter((item) => item.question.source === "Extra Practice");
+
+const renderQuestionLink = ({ question, index }) =>
+  `<li><a data-nav-link href="#q-${index + 1}">Q${index + 1}. ${esc(question.title)}</a></li>`;
+
+const renderPlainQuestionLink = ({ question, index }) =>
+  `<li><a href="#q-${index + 1}">Q${index + 1}. ${esc(question.title)}</a></li>`;
+
+const renderGroupedQuestions = (linkRenderer) => `
+  <div class="question-groups">
+    <h3>${label.tutorialQuestions}</h3>
+    ${Array.from(tutorialGroups.entries())
+      .map(
+        ([source, items], groupIndex) => `
+      <details ${groupIndex === 0 ? "open" : ""}>
+        <summary>${esc(source)} <span>${items.length}</span></summary>
+        <ol>${items.map(linkRenderer).join("\n")}</ol>
+      </details>`
+      )
+      .join("\n")}
+    <h3>${label.extraPractice}</h3>
+    <details>
+      <summary>${label.extraPractice} <span>${extraPracticeItems.length}</span></summary>
+      <ol>${extraPracticeItems.map(linkRenderer).join("\n")}</ol>
+    </details>
+  </div>`;
+
+const jumpOptions = allQuestions
+  .map((question, index) => `<option value="q-${index + 1}">Q${index + 1}. ${esc(question.title)} - ${esc(question.source)}</option>`)
+  .join("\n");
 
 const quickNav = `
 <aside class="quick-nav" aria-label="${label.quickNav}">
   <h2>${label.quickNav}</h2>
+  <label class="jump-label" for="questionJump">${label.jumpToQuestion}</label>
+  <select id="questionJump" class="jump-select">
+    <option value="">${label.jumpToQuestion}</option>
+    ${jumpOptions}
+  </select>
   <details open>
     <summary>${label.topics}</summary>
     <ol>${topics
@@ -50,9 +99,7 @@ const quickNav = `
   </details>
   <details>
     <summary>${label.questions}</summary>
-    <ol>${allQuestions
-      .map((question, index) => `<li><a data-nav-link href="#q-${index + 1}">Q${index + 1}. ${esc(question.title)}</a></li>`)
-      .join("\n")}</ol>
+    ${renderGroupedQuestions(renderQuestionLink)}
   </details>
 </aside>`;
 
@@ -114,11 +161,16 @@ html { scroll-padding-top: 18px; }
 .quick-nav details { border-top: 1px solid var(--line); padding: 10px 0; }
 .quick-nav details:first-of-type { border-top: 0; }
 .quick-nav summary { cursor: pointer; font-weight: 800; color: var(--accent-2); }
+.quick-nav summary span { float: right; color: var(--muted); font-size: 12px; }
+.quick-nav h3 { margin: 12px 0 6px; color: var(--accent); font-size: 12px; text-transform: uppercase; }
 .quick-nav ol { margin: 10px 0 0; padding-left: 20px; }
 .quick-nav li { margin: 0 0 8px; font-size: 14px; line-height: 1.35; }
 .quick-nav a { color: var(--ink); text-decoration: none; }
 .quick-nav a:hover { color: var(--accent); text-decoration: underline; }
 .quick-nav a.is-active { color: #fff; background: var(--accent); border-radius: 6px; display: block; margin-left: -6px; padding: 4px 6px; text-decoration: none; }
+.jump-label { display: block; margin: 0 0 6px; color: var(--accent-2); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.jump-select { width: 100%; min-width: 0; margin: 0 0 12px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); font: inherit; font-size: 14px; }
+.question-groups > details { padding-left: 0; }
 .static-card { margin: 18px 0; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: #fff; box-shadow: 0 8px 28px rgba(24,32,44,.05); scroll-margin-top: 18px; }
 .static-card h2 { font-size: 25px; display: flex; justify-content: space-between; gap: 12px; }
 .static-card h2 span { color: var(--accent-2); font-size: 18px; white-space: nowrap; }
@@ -128,6 +180,11 @@ html { scroll-padding-top: 18px; }
 .index-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0; list-style: none; }
 .index-list a { display: block; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: #fff; text-decoration: none; }
 .index-list a:hover { border-color: var(--accent); color: var(--accent); }
+.static-index-group { margin: 18px 0; }
+.static-index-group h3 { margin: 18px 0 10px; color: var(--accent); font-size: 15px; text-transform: uppercase; }
+.static-index-group details { margin: 10px 0; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fbfcfe; }
+.static-index-group summary { cursor: pointer; color: var(--accent-2); font-weight: 800; }
+.static-index-group summary span { float: right; color: var(--muted); font-size: 13px; }
 @media (max-width: 900px) {
   html { scroll-padding-top: 150px; }
   .page-layout { display: block; width: min(1000px, calc(100% - 24px)); }
@@ -157,9 +214,9 @@ ${quickNav}
 ${topicCards}
 <section class="static-card">
 <h2>${label.questionIndex}</h2>
-<ul class="index-list">${allQuestions
-  .map((question, index) => `<li><a href="#q-${index + 1}">Q${index + 1}. ${esc(question.title)}</a></li>`)
-  .join("\n")}</ul>
+<div class="static-index-group">
+${renderGroupedQuestions(renderPlainQuestionLink)}
+</div>
 </section>
 ${questionCards}
 </main>
@@ -176,7 +233,10 @@ ${questionCards}
     activeId = id;
     links.forEach((link) => link.classList.toggle("is-active", linkById.get(id) === link));
     const activeLink = linkById.get(id);
-    if (activeLink) activeLink.scrollIntoView({ block: "nearest", inline: "nearest" });
+    if (activeLink) {
+      activeLink.closest("details")?.setAttribute("open", "");
+      activeLink.scrollIntoView({ block: "nearest", inline: "nearest" });
+    }
   };
 
   if ("IntersectionObserver" in window) {
@@ -193,6 +253,12 @@ ${questionCards}
   }
 
   links.forEach((link) => link.addEventListener("click", () => setActive(decodeURIComponent(link.hash.slice(1)))));
+  document.querySelector("#questionJump")?.addEventListener("change", (event) => {
+    const id = event.target.value;
+    if (!id) return;
+    document.querySelector("#" + CSS.escape(id))?.scrollIntoView({ block: "start" });
+    setActive(id);
+  });
 })();
 </script>
 </body>
