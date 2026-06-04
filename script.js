@@ -749,10 +749,15 @@ const tutorialQuestions = [
     "Analyst forecasts and EM",
     "Why might analyst earnings forecasts affect earnings management, and why might earnings management affect analyst forecasts?",
     "为什么 analyst earnings forecasts 会影响 earnings management？为什么 earnings management 又会影响 forecasts？",
-    ["写 meet/beat incentives。", "写 analysts fail to detect EM。", "写 chicken-and-egg。"],
-    "Analyst forecasts 成为 managers 想 meet or beat 的 benchmark，尤其差一点达标时，managers 可能 upward manage earnings。另一方面，analysts 可能无法识别 EM，或把被管理的 current earnings 视为 persistent，从而调整 forecasts。这形成 chicken-and-egg problem。",
-    "Analyst forecasts create benchmarks that managers may try to meet or beat, especially when earnings are close to the target. Managers may therefore manage earnings upward. At the same time, analysts may fail to detect earnings management or treat managed current earnings as persistent, affecting future forecasts. This creates a chicken-and-egg problem.",
-    ["analyst forecasts", "meet or beat", "benchmark", "earnings persistence", "forecast accuracy", "chicken-and-egg problem"]
+    [
+      "先写 forecasts 是 earnings benchmark；公司不想 miss forecast，因为会影响 share price、reputation 和 market reaction。",
+      "写老师答案中的 empirical point：very few firms just miss analyst forecasts，说明接近目标时 managers 可能 upward manage earnings 去 meet/beat forecasts。",
+      "再写反向关系：analysts 可能 fail to detect EM，或误判 EM 对 current earnings persistence 的影响。",
+      "最后写 consequence 和 chicken-and-egg：这可能导致 systematic over-valuation / under-valuation；analysts 也可能调整 forecasts 以显得准确。"
+    ],
+    "Analyst earnings forecasts 会影响 earnings management，因为 forecasts 形成一个 managers 想要 meet or beat 的公开 benchmark。若公司 earnings 在 finalising accounts 前只差一点达到 forecast，managers 可能通过 accruals-based EM 或 real EM 向上管理利润。老师答案强调 empirical evidence：市场中很少有公司 just miss analyst forecasts，这说明很多接近目标的公司可能会 upward manage earnings 去达到 forecast，这就是 meet and beat earnings forecast literature。反过来，earnings management 也会影响 analyst forecasts，因为 analysts 可能没有识别出 EM，或没有正确判断 EM 对 current earnings persistence 的影响。如果 analysts 把被管理的 current earnings 当成可持续 earnings，就可能在未来 forecasts 中系统性高估或低估公司，导致 systematic over-valuation or under-valuation of stocks。此外，analysts 自己也有 forecast accuracy incentive；如果他们经常 wrong，会有 reputational cost，所以他们可能根据 firm earnings 或 management signals 调整 forecasts。于是这里有 chicken-and-egg problem：是 analyst forecasts 促使 managers manage earnings，还是 managed earnings 又反过来影响 analyst forecasts。",
+    "Analyst earnings forecasts can affect earnings management because they create a public benchmark that managers may try to meet or beat. If reported earnings are close to the forecast before the accounts are finalised, managers may manage earnings upward through accruals-based or real earnings management. The tutorial answer notes the empirical point that very few firms just miss analyst forecasts, suggesting that firms close to the target may manage earnings upward to meet the forecast. This is the meet-and-beat earnings forecast literature. Earnings management can also affect analyst forecasts because analysts may fail to detect earnings management or may fail to understand how EM affects the persistence of current earnings. If analysts treat managed current earnings as persistent, their future forecasts may be biased, leading to systematic over-valuation or under-valuation of stocks. Analysts also have incentives to appear accurate; being consistently wrong is costly to their reputation, so they may adjust forecasts in response to firm earnings or management signals. This creates a chicken-and-egg problem: analyst forecasts may drive earnings management, while managed earnings may also shape analyst forecasts.",
+    ["analyst forecasts", "meet or beat", "just miss", "earnings benchmark", "upward earnings management", "earnings persistence", "systematic over-valuation", "systematic under-valuation", "forecast accuracy", "chicken-and-egg problem"]
   ),
   makeTutorial(
     7,
