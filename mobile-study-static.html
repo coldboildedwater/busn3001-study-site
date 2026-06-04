@@ -543,6 +543,7 @@ html { scroll-padding-top: 18px; }
 .quick-nav li { margin: 0 0 8px; font-size: 14px; line-height: 1.35; }
 .quick-nav a { color: var(--ink); text-decoration: none; }
 .quick-nav a:hover { color: var(--accent); text-decoration: underline; }
+.quick-nav a.is-active { color: #fff; background: var(--accent); border-radius: 6px; display: block; margin-left: -6px; padding: 4px 6px; text-decoration: none; }
 .static-card { margin: 18px 0; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: #fff; box-shadow: 0 8px 28px rgba(24,32,44,.05); scroll-margin-top: 18px; }
 .static-card h2 { font-size: 25px; display: flex; justify-content: space-between; gap: 12px; }
 .static-card h2 span { color: var(--accent-2); font-size: 18px; white-space: nowrap; }
@@ -569,85 +570,85 @@ html { scroll-padding-top: 18px; }
   <h2>快速目录</h2>
   <details open>
     <summary>知识点</summary>
-    <ol><li><a href="#topic-agency">Agency theory / PAT contracting</a></li>
-<li><a href="#topic-regulation">Regulation and standard-setting</a></li>
-<li><a href="#topic-cmr">Capital market research / EMH</a></li>
-<li><a href="#topic-earnings">Earnings management</a></li>
-<li><a href="#topic-framework">Conceptual Framework / measurement</a></li>
-<li><a href="#topic-csr">CSR and CSR disclosure</a></li></ol>
+    <ol><li><a data-nav-link href="#topic-agency">Agency theory / PAT contracting</a></li>
+<li><a data-nav-link href="#topic-regulation">Regulation and standard-setting</a></li>
+<li><a data-nav-link href="#topic-cmr">Capital market research / EMH</a></li>
+<li><a data-nav-link href="#topic-earnings">Earnings management</a></li>
+<li><a data-nav-link href="#topic-framework">Conceptual Framework / measurement</a></li>
+<li><a data-nav-link href="#topic-csr">CSR and CSR disclosure</a></li></ol>
   </details>
   <details>
     <summary>题目</summary>
-    <ol><li><a href="#q-1">Q1. Enron and SPEs</a></li>
-<li><a href="#q-2">Q2. Mechanical standards and auditing</a></li>
-<li><a href="#q-3">Q3. Analysts and Enron</a></li>
-<li><a href="#q-4">Q4. Theory and falsification</a></li>
-<li><a href="#q-5">Q5. Hines and reality construction</a></li>
-<li><a href="#q-6">Q6. Prescription versus prediction</a></li>
-<li><a href="#q-7">Q7. Can theories be proved?</a></li>
-<li><a href="#q-8">Q8. Theory and standard setting</a></li>
-<li><a href="#q-9">Q9. Housemate conceptual framework</a></li>
-<li><a href="#q-10">Q10. Objective and users of GPFR</a></li>
-<li><a href="#q-11">Q11. Advantages and disadvantages of CF</a></li>
-<li><a href="#q-12">Q12. Lottery ticket asset</a></li>
-<li><a href="#q-13">Q13. User knowledge assumption</a></li>
-<li><a href="#q-14">Q14. Measurement issues in CF</a></li>
-<li><a href="#q-15">Q15. Decision rights</a></li>
-<li><a href="#q-16">Q16. Shareholder-debtholder problems</a></li>
-<li><a href="#q-17">Q17. Growing manufacturing firm</a></li>
-<li><a href="#q-18">Q18. Employee stock options</a></li>
-<li><a href="#q-19">Q19. Agency relationship and costs</a></li>
-<li><a href="#q-20">Q20. Conservative accounting and bonus plans</a></li>
-<li><a href="#q-21">Q21. Definition of earnings management</a></li>
-<li><a href="#q-22">Q22. Three PAT hypotheses</a></li>
-<li><a href="#q-23">Q23. CEO changeover</a></li>
-<li><a href="#q-24">Q24. Fixed salary</a></li>
-<li><a href="#q-25">Q25. Conservative accounting and contracting</a></li>
-<li><a href="#q-26">Q26. Analyst forecasts and EM</a></li>
-<li><a href="#q-27">Q27. Separation and regulation</a></li>
-<li><a href="#q-28">Q28. Private interest and climate change</a></li>
-<li><a href="#q-29">Q29. Neutral accounting standards</a></li>
-<li><a href="#q-30">Q30. Audits without legal requirement</a></li>
-<li><a href="#q-31">Q31. Motivations of regulators</a></li>
-<li><a href="#q-32">Q32. Share price model</a></li>
-<li><a href="#q-33">Q33. Semi-strong EMH</a></li>
-<li><a href="#q-34">Q34. Earnings and share prices</a></li>
-<li><a href="#q-35">Q35. Musk tweet</a></li>
-<li><a href="#q-36">Q36. Volkswagen emissions</a></li>
-<li><a href="#q-37">Q37. Insider information</a></li>
-<li><a href="#q-38">Q38. Information content method</a></li>
-<li><a href="#q-39">Q39. No price change</a></li>
-<li><a href="#q-40">Q40. Firm size and information content</a></li>
-<li><a href="#q-41">Q41. Information transfer</a></li>
-<li><a href="#q-42">Q42. Market has it right</a></li>
-<li><a href="#q-43">Q43. Ex ante cost of equity</a></li>
-<li><a href="#q-44">Q44. Disclosure and cost of equity</a></li>
-<li><a href="#q-45">Q45. Stakeholders and corporate role</a></li>
-<li><a href="#q-46">Q46. CSP-CFP link</a></li>
-<li><a href="#q-47">Q47. Empirical challenges in CSP-CFP</a></li>
-<li><a href="#q-48">Q48. Five CSP-CFP views</a></li>
-<li><a href="#q-49">Q49. CSR and tax avoidance</a></li>
-<li><a href="#q-50">Q50. CSR disclosure and cost of equity</a></li>
-<li><a href="#q-51">Q51. PMC and CSR disclosure</a></li>
-<li><a href="#q-52">Q52. Founder-managed firm expansion</a></li>
-<li><a href="#q-53">Q53. Debt covenants and borrower incentives</a></li>
-<li><a href="#q-54">Q54. Employee stock options</a></li>
-<li><a href="#q-55">Q55. Neutrality of accounting standards</a></li>
-<li><a href="#q-56">Q56. Climate regulation and private interests</a></li>
-<li><a href="#q-57">Q57. Audits without regulation</a></li>
-<li><a href="#q-58">Q58. No share price reaction</a></li>
-<li><a href="#q-59">Q59. Musk tweet and share price</a></li>
-<li><a href="#q-60">Q60. Insider trading and market efficiency</a></li>
-<li><a href="#q-61">Q61. Information transfer effect</a></li>
-<li><a href="#q-62">Q62. Earnings management definition and motives</a></li>
-<li><a href="#q-63">Q63. Analyst forecasts</a></li>
-<li><a href="#q-64">Q64. Conservative accounting and contracting</a></li>
-<li><a href="#q-65">Q65. Conceptual Framework users</a></li>
-<li><a href="#q-66">Q66. Conceptual Framework as normative theory</a></li>
-<li><a href="#q-67">Q67. Asset recognition and lottery ticket</a></li>
-<li><a href="#q-68">Q68. Why disclose CSR information</a></li>
-<li><a href="#q-69">Q69. CSP and CFP</a></li>
-<li><a href="#q-70">Q70. Narrow view versus stakeholder view</a></li></ol>
+    <ol><li><a data-nav-link href="#q-1">Q1. Enron and SPEs</a></li>
+<li><a data-nav-link href="#q-2">Q2. Mechanical standards and auditing</a></li>
+<li><a data-nav-link href="#q-3">Q3. Analysts and Enron</a></li>
+<li><a data-nav-link href="#q-4">Q4. Theory and falsification</a></li>
+<li><a data-nav-link href="#q-5">Q5. Hines and reality construction</a></li>
+<li><a data-nav-link href="#q-6">Q6. Prescription versus prediction</a></li>
+<li><a data-nav-link href="#q-7">Q7. Can theories be proved?</a></li>
+<li><a data-nav-link href="#q-8">Q8. Theory and standard setting</a></li>
+<li><a data-nav-link href="#q-9">Q9. Housemate conceptual framework</a></li>
+<li><a data-nav-link href="#q-10">Q10. Objective and users of GPFR</a></li>
+<li><a data-nav-link href="#q-11">Q11. Advantages and disadvantages of CF</a></li>
+<li><a data-nav-link href="#q-12">Q12. Lottery ticket asset</a></li>
+<li><a data-nav-link href="#q-13">Q13. User knowledge assumption</a></li>
+<li><a data-nav-link href="#q-14">Q14. Measurement issues in CF</a></li>
+<li><a data-nav-link href="#q-15">Q15. Decision rights</a></li>
+<li><a data-nav-link href="#q-16">Q16. Shareholder-debtholder problems</a></li>
+<li><a data-nav-link href="#q-17">Q17. Growing manufacturing firm</a></li>
+<li><a data-nav-link href="#q-18">Q18. Employee stock options</a></li>
+<li><a data-nav-link href="#q-19">Q19. Agency relationship and costs</a></li>
+<li><a data-nav-link href="#q-20">Q20. Conservative accounting and bonus plans</a></li>
+<li><a data-nav-link href="#q-21">Q21. Definition of earnings management</a></li>
+<li><a data-nav-link href="#q-22">Q22. Three PAT hypotheses</a></li>
+<li><a data-nav-link href="#q-23">Q23. CEO changeover</a></li>
+<li><a data-nav-link href="#q-24">Q24. Fixed salary</a></li>
+<li><a data-nav-link href="#q-25">Q25. Conservative accounting and contracting</a></li>
+<li><a data-nav-link href="#q-26">Q26. Analyst forecasts and EM</a></li>
+<li><a data-nav-link href="#q-27">Q27. Separation and regulation</a></li>
+<li><a data-nav-link href="#q-28">Q28. Private interest and climate change</a></li>
+<li><a data-nav-link href="#q-29">Q29. Neutral accounting standards</a></li>
+<li><a data-nav-link href="#q-30">Q30. Audits without legal requirement</a></li>
+<li><a data-nav-link href="#q-31">Q31. Motivations of regulators</a></li>
+<li><a data-nav-link href="#q-32">Q32. Share price model</a></li>
+<li><a data-nav-link href="#q-33">Q33. Semi-strong EMH</a></li>
+<li><a data-nav-link href="#q-34">Q34. Earnings and share prices</a></li>
+<li><a data-nav-link href="#q-35">Q35. Musk tweet</a></li>
+<li><a data-nav-link href="#q-36">Q36. Volkswagen emissions</a></li>
+<li><a data-nav-link href="#q-37">Q37. Insider information</a></li>
+<li><a data-nav-link href="#q-38">Q38. Information content method</a></li>
+<li><a data-nav-link href="#q-39">Q39. No price change</a></li>
+<li><a data-nav-link href="#q-40">Q40. Firm size and information content</a></li>
+<li><a data-nav-link href="#q-41">Q41. Information transfer</a></li>
+<li><a data-nav-link href="#q-42">Q42. Market has it right</a></li>
+<li><a data-nav-link href="#q-43">Q43. Ex ante cost of equity</a></li>
+<li><a data-nav-link href="#q-44">Q44. Disclosure and cost of equity</a></li>
+<li><a data-nav-link href="#q-45">Q45. Stakeholders and corporate role</a></li>
+<li><a data-nav-link href="#q-46">Q46. CSP-CFP link</a></li>
+<li><a data-nav-link href="#q-47">Q47. Empirical challenges in CSP-CFP</a></li>
+<li><a data-nav-link href="#q-48">Q48. Five CSP-CFP views</a></li>
+<li><a data-nav-link href="#q-49">Q49. CSR and tax avoidance</a></li>
+<li><a data-nav-link href="#q-50">Q50. CSR disclosure and cost of equity</a></li>
+<li><a data-nav-link href="#q-51">Q51. PMC and CSR disclosure</a></li>
+<li><a data-nav-link href="#q-52">Q52. Founder-managed firm expansion</a></li>
+<li><a data-nav-link href="#q-53">Q53. Debt covenants and borrower incentives</a></li>
+<li><a data-nav-link href="#q-54">Q54. Employee stock options</a></li>
+<li><a data-nav-link href="#q-55">Q55. Neutrality of accounting standards</a></li>
+<li><a data-nav-link href="#q-56">Q56. Climate regulation and private interests</a></li>
+<li><a data-nav-link href="#q-57">Q57. Audits without regulation</a></li>
+<li><a data-nav-link href="#q-58">Q58. No share price reaction</a></li>
+<li><a data-nav-link href="#q-59">Q59. Musk tweet and share price</a></li>
+<li><a data-nav-link href="#q-60">Q60. Insider trading and market efficiency</a></li>
+<li><a data-nav-link href="#q-61">Q61. Information transfer effect</a></li>
+<li><a data-nav-link href="#q-62">Q62. Earnings management definition and motives</a></li>
+<li><a data-nav-link href="#q-63">Q63. Analyst forecasts</a></li>
+<li><a data-nav-link href="#q-64">Q64. Conservative accounting and contracting</a></li>
+<li><a data-nav-link href="#q-65">Q65. Conceptual Framework users</a></li>
+<li><a data-nav-link href="#q-66">Q66. Conceptual Framework as normative theory</a></li>
+<li><a data-nav-link href="#q-67">Q67. Asset recognition and lottery ticket</a></li>
+<li><a data-nav-link href="#q-68">Q68. Why disclose CSR information</a></li>
+<li><a data-nav-link href="#q-69">Q69. CSP and CFP</a></li>
+<li><a data-nav-link href="#q-70">Q70. Narrow view versus stakeholder view</a></li></ol>
   </details>
 </aside>
 <main class="static-shell">
@@ -2621,5 +2622,36 @@ html { scroll-padding-top: 18px; }
   </section>
 </main>
 </div>
+<script>
+(() => {
+  const links = Array.from(document.querySelectorAll("[data-nav-link]"));
+  const linkById = new Map(links.map((link) => [decodeURIComponent(link.hash.slice(1)), link]));
+  const sections = Array.from(document.querySelectorAll("section[id]"));
+  let activeId = "";
+
+  const setActive = (id) => {
+    if (!id || id === activeId) return;
+    activeId = id;
+    links.forEach((link) => link.classList.toggle("is-active", linkById.get(id) === link));
+    const activeLink = linkById.get(id);
+    if (activeLink) activeLink.scrollIntoView({ block: "nearest", inline: "nearest" });
+  };
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio || a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-18% 0px -65% 0px", threshold: [0.01, 0.12, 0.25, 0.5] }
+    );
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  links.forEach((link) => link.addEventListener("click", () => setActive(decodeURIComponent(link.hash.slice(1)))));
+})();
+</script>
 </body>
 </html>

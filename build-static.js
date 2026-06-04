@@ -45,13 +45,13 @@ const quickNav = `
   <details open>
     <summary>${label.topics}</summary>
     <ol>${topics
-      .map((topic) => `<li><a href="#topic-${esc(topic.id)}">${esc(topic.name)}</a></li>`)
+      .map((topic) => `<li><a data-nav-link href="#topic-${esc(topic.id)}">${esc(topic.name)}</a></li>`)
       .join("\n")}</ol>
   </details>
   <details>
     <summary>${label.questions}</summary>
     <ol>${allQuestions
-      .map((question, index) => `<li><a href="#q-${index + 1}">Q${index + 1}. ${esc(question.title)}</a></li>`)
+      .map((question, index) => `<li><a data-nav-link href="#q-${index + 1}">Q${index + 1}. ${esc(question.title)}</a></li>`)
       .join("\n")}</ol>
   </details>
 </aside>`;
@@ -118,6 +118,7 @@ html { scroll-padding-top: 18px; }
 .quick-nav li { margin: 0 0 8px; font-size: 14px; line-height: 1.35; }
 .quick-nav a { color: var(--ink); text-decoration: none; }
 .quick-nav a:hover { color: var(--accent); text-decoration: underline; }
+.quick-nav a.is-active { color: #fff; background: var(--accent); border-radius: 6px; display: block; margin-left: -6px; padding: 4px 6px; text-decoration: none; }
 .static-card { margin: 18px 0; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: #fff; box-shadow: 0 8px 28px rgba(24,32,44,.05); scroll-margin-top: 18px; }
 .static-card h2 { font-size: 25px; display: flex; justify-content: space-between; gap: 12px; }
 .static-card h2 span { color: var(--accent-2); font-size: 18px; white-space: nowrap; }
@@ -163,6 +164,37 @@ ${topicCards}
 ${questionCards}
 </main>
 </div>
+<script>
+(() => {
+  const links = Array.from(document.querySelectorAll("[data-nav-link]"));
+  const linkById = new Map(links.map((link) => [decodeURIComponent(link.hash.slice(1)), link]));
+  const sections = Array.from(document.querySelectorAll("section[id]"));
+  let activeId = "";
+
+  const setActive = (id) => {
+    if (!id || id === activeId) return;
+    activeId = id;
+    links.forEach((link) => link.classList.toggle("is-active", linkById.get(id) === link));
+    const activeLink = linkById.get(id);
+    if (activeLink) activeLink.scrollIntoView({ block: "nearest", inline: "nearest" });
+  };
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio || a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-18% 0px -65% 0px", threshold: [0.01, 0.12, 0.25, 0.5] }
+    );
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  links.forEach((link) => link.addEventListener("click", () => setActive(decodeURIComponent(link.hash.slice(1)))));
+})();
+</script>
 </body>
 </html>`;
 
