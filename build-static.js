@@ -87,10 +87,13 @@ const quickNav = `
 <aside class="quick-nav" aria-label="${label.quickNav}">
   <h2>${label.quickNav}</h2>
   <label class="jump-label" for="questionJump">${label.jumpToQuestion}</label>
-  <select id="questionJump" class="jump-select">
-    <option value="">${label.jumpToQuestion}</option>
-    ${jumpOptions}
-  </select>
+  <div class="jump-row">
+    <select id="questionJump" class="jump-select">
+      <option value="">${label.jumpToQuestion}</option>
+      ${jumpOptions}
+    </select>
+    <button class="jump-button" type="button" id="questionJumpButton">\u8df3\u8f6c</button>
+  </div>
   <details open>
     <summary>${label.topics}</summary>
     <ol>${topics
@@ -169,7 +172,10 @@ html { scroll-padding-top: 18px; }
 .quick-nav a:hover { color: var(--accent); text-decoration: underline; }
 .quick-nav a.is-active { color: #fff; background: var(--accent); border-radius: 6px; display: block; margin-left: -6px; padding: 4px 6px; text-decoration: none; }
 .jump-label { display: block; margin: 0 0 6px; color: var(--accent-2); font-size: 12px; font-weight: 800; text-transform: uppercase; }
-.jump-select { width: 100%; min-width: 0; margin: 0 0 12px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); font: inherit; font-size: 14px; }
+.jump-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; margin: 0 0 12px; }
+.jump-select { width: 100%; min-width: 0; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); font: inherit; font-size: 14px; }
+.jump-button { padding: 9px 10px; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent); color: #fff; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; }
+.jump-button:hover { filter: brightness(0.95); }
 .question-groups > details { padding-left: 0; }
 .static-card { margin: 18px 0; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: #fff; box-shadow: 0 8px 28px rgba(24,32,44,.05); scroll-margin-top: 18px; }
 .static-card h2 { font-size: 25px; display: flex; justify-content: space-between; gap: 12px; }
@@ -228,6 +234,15 @@ ${questionCards}
   const sections = Array.from(document.querySelectorAll("section[id]"));
   let activeId = "";
 
+  const keepNavLinkVisible = (link) => {
+    const nav = link.closest(".quick-nav");
+    if (!nav) return;
+    const linkBox = link.getBoundingClientRect();
+    const navBox = nav.getBoundingClientRect();
+    if (linkBox.top < navBox.top + 70) nav.scrollTop -= navBox.top + 90 - linkBox.top;
+    if (linkBox.bottom > navBox.bottom - 20) nav.scrollTop += linkBox.bottom - navBox.bottom + 40;
+  };
+
   const setActive = (id) => {
     if (!id || id === activeId) return;
     activeId = id;
@@ -235,7 +250,7 @@ ${questionCards}
     const activeLink = linkById.get(id);
     if (activeLink) {
       activeLink.closest("details")?.setAttribute("open", "");
-      activeLink.scrollIntoView({ block: "nearest", inline: "nearest" });
+      keepNavLinkVisible(activeLink);
     }
   };
 
@@ -253,12 +268,19 @@ ${questionCards}
   }
 
   links.forEach((link) => link.addEventListener("click", () => setActive(decodeURIComponent(link.hash.slice(1)))));
-  document.querySelector("#questionJump")?.addEventListener("change", (event) => {
-    const id = event.target.value;
+  const jumpSelect = document.querySelector("#questionJump");
+  const jumpToSelected = () => {
+    const id = jumpSelect?.value;
     if (!id) return;
-    document.querySelector("#" + CSS.escape(id))?.scrollIntoView({ block: "start" });
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.scrollIntoView({ block: "start" });
+    history.replaceState(null, "", "#" + id);
     setActive(id);
-  });
+  };
+
+  jumpSelect?.addEventListener("change", jumpToSelected);
+  document.querySelector("#questionJumpButton")?.addEventListener("click", jumpToSelected);
 })();
 </script>
 </body>
