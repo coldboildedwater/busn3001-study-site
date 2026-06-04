@@ -567,10 +567,21 @@ html { scroll-padding-top: 18px; }
 .static-index-group summary { cursor: pointer; color: var(--accent-2); font-weight: 800; }
 .static-index-group summary span { float: right; color: var(--muted); font-size: 13px; }
 @media (max-width: 900px) {
-  html { scroll-padding-top: 150px; }
+  html { scroll-padding-top: 18px; }
   .page-layout { display: block; width: min(1000px, calc(100% - 24px)); }
-  .quick-nav { z-index: 20; top: 8px; max-height: 42vh; margin-top: 12px; }
+  .quick-nav { position: fixed; left: 12px; right: 12px; top: 10px; z-index: 20; max-height: none; margin-top: 0; padding: 0; overflow: visible; border-color: transparent; background: transparent; box-shadow: none; pointer-events: none; }
   .quick-nav h2 { font-size: 16px; }
+  .quick-nav h2::before { content: "快速目录"; display: inline-block; padding: 10px 12px; border-radius: 999px; background: var(--accent); color: #fff; box-shadow: 0 8px 24px rgba(24,32,44,.2); pointer-events: auto; }
+  .quick-nav.is-open { max-height: calc(100vh - 20px); overflow: auto; padding: 14px; border-color: var(--line); background: #fff; box-shadow: 0 12px 34px rgba(24,32,44,.18); pointer-events: auto; }
+  .quick-nav.is-open h2::before { content: "收起目录"; }
+  .quick-nav .jump-label,
+  .quick-nav .jump-row,
+  .quick-nav details { display: none; }
+  .quick-nav.is-open .jump-label,
+  .quick-nav.is-open .jump-row,
+  .quick-nav.is-open details { display: block; }
+  .quick-nav h2 { margin: 0; }
+  .quick-nav.is-open h2 { margin-bottom: 12px; }
   .static-shell { padding-top: 10px; }
 }
 @media (max-width: 700px) { .static-card { padding: 16px; } .static-card h2 { display: block; } }
@@ -2819,11 +2830,12 @@ html { scroll-padding-top: 18px; }
   const links = Array.from(document.querySelectorAll("[data-nav-link]"));
   const linkById = new Map(links.map((link) => [decodeURIComponent(link.hash.slice(1)), link]));
   const sections = Array.from(document.querySelectorAll("section[id]"));
+  const nav = document.querySelector(".quick-nav");
   let activeId = "";
 
   const keepNavLinkVisible = (link) => {
     const nav = link.closest(".quick-nav");
-    if (!nav) return;
+    if (!nav || !nav.classList.contains("is-open")) return;
     const linkBox = link.getBoundingClientRect();
     const navBox = nav.getBoundingClientRect();
     if (linkBox.top < navBox.top + 70) nav.scrollTop -= navBox.top + 90 - linkBox.top;
@@ -2855,6 +2867,7 @@ html { scroll-padding-top: 18px; }
   }
 
   links.forEach((link) => link.addEventListener("click", () => setActive(decodeURIComponent(link.hash.slice(1)))));
+  nav?.querySelector("h2")?.addEventListener("click", () => nav.classList.toggle("is-open"));
   const jumpSelect = document.querySelector("#questionJump");
   const jumpToSelected = () => {
     const id = jumpSelect?.value;
@@ -2864,6 +2877,7 @@ html { scroll-padding-top: 18px; }
     target.scrollIntoView({ block: "start" });
     history.replaceState(null, "", "#" + id);
     setActive(id);
+    nav?.classList.remove("is-open");
   };
 
   jumpSelect?.addEventListener("change", jumpToSelected);
