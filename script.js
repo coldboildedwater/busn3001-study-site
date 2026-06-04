@@ -689,10 +689,15 @@ const tutorialQuestions = [
     "Definition of earnings management",
     "What is earnings management, accruals-based earnings management and real earnings management?",
     "什么是 earnings management、accruals-based earnings management 和 real earnings management？",
-    ["先给 EM 定义。", "区分 accrual judgement 和 real transactions。", "举例。"],
-    "Earnings management 是 deliberate intervention，使 reported income 偏离 neutral GAAP application。Accruals-based EM 是操纵 accrual estimates，如 bad debts、depreciation、provisions。Real EM 是改变真实交易时点或活动，如出售资产、提前销售、削减 R&D，以影响本期 profit。",
-    "Earnings management is deliberate intervention in the reporting process to bias reported income away from a neutral application of GAAP. Accruals-based earnings management biases accrual estimates such as doubtful debts, depreciation or provisions. Real earnings management changes actual transactions or business activities, such as asset sales, sales timing or R&D cuts, to affect current profit.",
-    ["earnings management", "accruals-based", "real earnings management", "neutral application", "GAAP", "provisions"]
+    [
+      "先背 Healy & Wahlen (1999) 的定义：managers use judgment in financial reporting and in structuring transactions to alter financial reports。",
+      "写两个目的：mislead stakeholders about underlying economic performance，或 influence contractual outcomes。",
+      "再解释 accruals-based EM：用 accounting estimates / accrual judgments 改变 reported earnings。",
+      "最后解释 real EM：改变真实经营活动或交易安排来影响 reported earnings。"
+    ],
+    "Earnings management occurs when managers use judgment in financial reporting and in structuring transactions to alter financial reports。目的通常有两个：第一，mislead some stakeholders about the underlying economic performance of the company；第二，influence contractual outcomes that depend on reported accounting numbers，例如 bonus schemes 和 debt covenants（Healy & Wahlen 1999）。Accruals-based earnings management 是通过会计估计和应计判断影响利润，例如 bad debts、depreciation、impairment 或 provisions。它主要改变 accounting numbers，而不一定改变真实经营活动。Real earnings management 是通过改变真实交易或经营决策影响利润，例如提前销售、提供异常折扣、出售资产、过度生产或削减 R&D。它可能更难被审计发现，但可能损害 long-term firm value。",
+    "Earnings management occurs when managers use judgment in financial reporting and in structuring transactions to alter financial reports. The objective is either to mislead some stakeholders about the underlying economic performance of the company or to influence contractual outcomes, such as bonus schemes and debt covenants, that depend on reported accounting numbers (Healy & Wahlen 1999). Accruals-based earnings management uses accounting estimates and accrual judgments to affect reported earnings, such as doubtful debts, depreciation, impairment or provisions. It mainly changes accounting numbers without necessarily changing real business activities. Real earnings management changes actual transactions or operating decisions to affect earnings, such as accelerating sales, offering unusual discounts, selling assets, overproducing inventory or cutting R&D. It may be harder to detect through audit procedures, but it can damage long-term firm value.",
+    ["earnings management", "judgment in financial reporting", "structuring transactions", "alter financial reports", "underlying economic performance", "contractual outcomes", "bonus schemes", "debt covenants", "accruals-based earnings management", "real earnings management"]
   ),
   makeTutorial(
     6,
